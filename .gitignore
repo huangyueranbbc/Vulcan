@@ -9,3 +9,5 @@ logs
 logs/*
 build
 .settings
+null
+build
