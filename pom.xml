@@ -12,6 +12,7 @@
         <module>Vulcan_Server</module>
         <module>Vulcan_Runner</module>
         <module>Vulcan_Common</module>
+        <module>Vulcan_Protocol</module>
     </modules>
 
 

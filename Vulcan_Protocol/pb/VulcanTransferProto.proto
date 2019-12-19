@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.huangyr.project.vulcan.proto";
+option java_outer_classname = "VulcanTransferProto";
+package cn.com.essence.proto;
+
+// 心跳数据包
+message VulcanHeartPackage {
+  int32 resultCode = 1; // 请求结果响应码
+  string message = 2; // 心跳消息
+  string ip = 3; // 发送心跳的机器IP
+  uint64 heartTime = 5; // 发送心跳时间
+}
+
+// 心跳结果报
+message HeartResultPackage{
+  int32 resultCode = 1; // 心跳响应结果
+  string message = 2; // 心跳结果消息
+  Command command = 3; // 响应命令
+  uint64 sendHeartTime = 4; // 发送心跳时间
+  uint64 receiveHeartTime = 5; // 收到心跳时间
+  uint64 responseHeartTime = 6; // 心跳响应时间
+}
+
+// 心跳结果命令
+enum Command {
+    NORMAL = 0;
+    UPGRADE = 1;
+}
+
+// runner节点状态信息
+message RunnerNodeInfo{
+
+}
+
+
