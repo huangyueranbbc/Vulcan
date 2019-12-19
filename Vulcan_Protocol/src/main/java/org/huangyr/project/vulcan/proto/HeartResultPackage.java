@@ -8,11 +8,11 @@ package org.huangyr.project.vulcan.proto;
  * 心跳结果报
  * </pre>
  *
- * Protobuf type {@code cn.com.essence.proto.HeartResultPackage}
+ * Protobuf type {@code org.huangyr.project.vulcan.proto.HeartResultPackage}
  */
 public  final class HeartResultPackage extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:cn.com.essence.proto.HeartResultPackage)
+    // @@protoc_insertion_point(message_implements:org.huangyr.project.vulcan.proto.HeartResultPackage)
     HeartResultPackageOrBuilder {
 private static final long serialVersionUID = 0L;
   // Use HeartResultPackage.newBuilder() to construct.
@@ -105,13 +105,13 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return org.huangyr.project.vulcan.proto.VulcanTransferProto.internal_static_cn_com_essence_proto_HeartResultPackage_descriptor;
+    return org.huangyr.project.vulcan.proto.VulcanTransferProto.internal_static_org_huangyr_project_vulcan_proto_HeartResultPackage_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return org.huangyr.project.vulcan.proto.VulcanTransferProto.internal_static_cn_com_essence_proto_HeartResultPackage_fieldAccessorTable
+    return org.huangyr.project.vulcan.proto.VulcanTransferProto.internal_static_org_huangyr_project_vulcan_proto_HeartResultPackage_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
             org.huangyr.project.vulcan.proto.HeartResultPackage.class, org.huangyr.project.vulcan.proto.HeartResultPackage.Builder.class);
   }
@@ -178,7 +178,7 @@ private static final long serialVersionUID = 0L;
    * 响应命令
    * </pre>
    *
-   * <code>.cn.com.essence.proto.Command command = 3;</code>
+   * <code>.org.huangyr.project.vulcan.proto.Command command = 3;</code>
    */
   public int getCommandValue() {
     return command_;
@@ -188,7 +188,7 @@ private static final long serialVersionUID = 0L;
    * 响应命令
    * </pre>
    *
-   * <code>.cn.com.essence.proto.Command command = 3;</code>
+   * <code>.org.huangyr.project.vulcan.proto.Command command = 3;</code>
    */
   public org.huangyr.project.vulcan.proto.Command getCommand() {
     @SuppressWarnings("deprecation")
@@ -452,21 +452,21 @@ private static final long serialVersionUID = 0L;
    * 心跳结果报
    * </pre>
    *
-   * Protobuf type {@code cn.com.essence.proto.HeartResultPackage}
+   * Protobuf type {@code org.huangyr.project.vulcan.proto.HeartResultPackage}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:cn.com.essence.proto.HeartResultPackage)
+      // @@protoc_insertion_point(builder_implements:org.huangyr.project.vulcan.proto.HeartResultPackage)
       org.huangyr.project.vulcan.proto.HeartResultPackageOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return org.huangyr.project.vulcan.proto.VulcanTransferProto.internal_static_cn_com_essence_proto_HeartResultPackage_descriptor;
+      return org.huangyr.project.vulcan.proto.VulcanTransferProto.internal_static_org_huangyr_project_vulcan_proto_HeartResultPackage_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return org.huangyr.project.vulcan.proto.VulcanTransferProto.internal_static_cn_com_essence_proto_HeartResultPackage_fieldAccessorTable
+      return org.huangyr.project.vulcan.proto.VulcanTransferProto.internal_static_org_huangyr_project_vulcan_proto_HeartResultPackage_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               org.huangyr.project.vulcan.proto.HeartResultPackage.class, org.huangyr.project.vulcan.proto.HeartResultPackage.Builder.class);
     }
@@ -507,7 +507,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return org.huangyr.project.vulcan.proto.VulcanTransferProto.internal_static_cn_com_essence_proto_HeartResultPackage_descriptor;
+      return org.huangyr.project.vulcan.proto.VulcanTransferProto.internal_static_org_huangyr_project_vulcan_proto_HeartResultPackage_descriptor;
     }
 
     @java.lang.Override
@@ -762,7 +762,7 @@ private static final long serialVersionUID = 0L;
      * 响应命令
      * </pre>
      *
-     * <code>.cn.com.essence.proto.Command command = 3;</code>
+     * <code>.org.huangyr.project.vulcan.proto.Command command = 3;</code>
      */
     public int getCommandValue() {
       return command_;
@@ -772,7 +772,7 @@ private static final long serialVersionUID = 0L;
      * 响应命令
      * </pre>
      *
-     * <code>.cn.com.essence.proto.Command command = 3;</code>
+     * <code>.org.huangyr.project.vulcan.proto.Command command = 3;</code>
      */
     public Builder setCommandValue(int value) {
       command_ = value;
@@ -784,7 +784,7 @@ private static final long serialVersionUID = 0L;
      * 响应命令
      * </pre>
      *
-     * <code>.cn.com.essence.proto.Command command = 3;</code>
+     * <code>.org.huangyr.project.vulcan.proto.Command command = 3;</code>
      */
     public org.huangyr.project.vulcan.proto.Command getCommand() {
       @SuppressWarnings("deprecation")
@@ -796,7 +796,7 @@ private static final long serialVersionUID = 0L;
      * 响应命令
      * </pre>
      *
-     * <code>.cn.com.essence.proto.Command command = 3;</code>
+     * <code>.org.huangyr.project.vulcan.proto.Command command = 3;</code>
      */
     public Builder setCommand(org.huangyr.project.vulcan.proto.Command value) {
       if (value == null) {
@@ -812,7 +812,7 @@ private static final long serialVersionUID = 0L;
      * 响应命令
      * </pre>
      *
-     * <code>.cn.com.essence.proto.Command command = 3;</code>
+     * <code>.org.huangyr.project.vulcan.proto.Command command = 3;</code>
      */
     public Builder clearCommand() {
       
@@ -947,10 +947,10 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:cn.com.essence.proto.HeartResultPackage)
+    // @@protoc_insertion_point(builder_scope:org.huangyr.project.vulcan.proto.HeartResultPackage)
   }
 
-  // @@protoc_insertion_point(class_scope:cn.com.essence.proto.HeartResultPackage)
+  // @@protoc_insertion_point(class_scope:org.huangyr.project.vulcan.proto.HeartResultPackage)
   private static final org.huangyr.project.vulcan.proto.HeartResultPackage DEFAULT_INSTANCE;
   static {
     DEFAULT_INSTANCE = new org.huangyr.project.vulcan.proto.HeartResultPackage();

@@ -8,11 +8,11 @@ package org.huangyr.project.vulcan.proto;
  * 心跳数据包
  * </pre>
  *
- * Protobuf type {@code cn.com.essence.proto.VulcanHeartPackage}
+ * Protobuf type {@code org.huangyr.project.vulcan.proto.VulcanHeartPackage}
  */
 public  final class VulcanHeartPackage extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:cn.com.essence.proto.VulcanHeartPackage)
+    // @@protoc_insertion_point(message_implements:org.huangyr.project.vulcan.proto.VulcanHeartPackage)
     VulcanHeartPackageOrBuilder {
 private static final long serialVersionUID = 0L;
   // Use VulcanHeartPackage.newBuilder() to construct.
@@ -20,7 +20,6 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private VulcanHeartPackage() {
-    resultCode_ = 0;
     message_ = "";
     ip_ = "";
     heartTime_ = 0L;
@@ -50,24 +49,19 @@ private static final long serialVersionUID = 0L;
           case 0:
             done = true;
             break;
-          case 8: {
-
-            resultCode_ = input.readInt32();
-            break;
-          }
-          case 18: {
+          case 10: {
             java.lang.String s = input.readStringRequireUtf8();
 
             message_ = s;
             break;
           }
-          case 26: {
+          case 18: {
             java.lang.String s = input.readStringRequireUtf8();
 
             ip_ = s;
             break;
           }
-          case 40: {
+          case 24: {
 
             heartTime_ = input.readUInt64();
             break;
@@ -93,38 +87,25 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return org.huangyr.project.vulcan.proto.VulcanTransferProto.internal_static_cn_com_essence_proto_VulcanHeartPackage_descriptor;
+    return org.huangyr.project.vulcan.proto.VulcanTransferProto.internal_static_org_huangyr_project_vulcan_proto_VulcanHeartPackage_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return org.huangyr.project.vulcan.proto.VulcanTransferProto.internal_static_cn_com_essence_proto_VulcanHeartPackage_fieldAccessorTable
+    return org.huangyr.project.vulcan.proto.VulcanTransferProto.internal_static_org_huangyr_project_vulcan_proto_VulcanHeartPackage_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
             org.huangyr.project.vulcan.proto.VulcanHeartPackage.class, org.huangyr.project.vulcan.proto.VulcanHeartPackage.Builder.class);
   }
 
-  public static final int RESULTCODE_FIELD_NUMBER = 1;
-  private int resultCode_;
-  /**
-   * <pre>
-   * 请求结果响应码
-   * </pre>
-   *
-   * <code>int32 resultCode = 1;</code>
-   */
-  public int getResultCode() {
-    return resultCode_;
-  }
-
-  public static final int MESSAGE_FIELD_NUMBER = 2;
+  public static final int MESSAGE_FIELD_NUMBER = 1;
   private volatile java.lang.Object message_;
   /**
    * <pre>
    * 心跳消息
    * </pre>
    *
-   * <code>string message = 2;</code>
+   * <code>string message = 1;</code>
    */
   public java.lang.String getMessage() {
     java.lang.Object ref = message_;
@@ -143,7 +124,7 @@ private static final long serialVersionUID = 0L;
    * 心跳消息
    * </pre>
    *
-   * <code>string message = 2;</code>
+   * <code>string message = 1;</code>
    */
   public com.google.protobuf.ByteString
       getMessageBytes() {
@@ -159,14 +140,14 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int IP_FIELD_NUMBER = 3;
+  public static final int IP_FIELD_NUMBER = 2;
   private volatile java.lang.Object ip_;
   /**
    * <pre>
    * 发送心跳的机器IP
    * </pre>
    *
-   * <code>string ip = 3;</code>
+   * <code>string ip = 2;</code>
    */
   public java.lang.String getIp() {
     java.lang.Object ref = ip_;
@@ -185,7 +166,7 @@ private static final long serialVersionUID = 0L;
    * 发送心跳的机器IP
    * </pre>
    *
-   * <code>string ip = 3;</code>
+   * <code>string ip = 2;</code>
    */
   public com.google.protobuf.ByteString
       getIpBytes() {
@@ -201,14 +182,14 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int HEARTTIME_FIELD_NUMBER = 5;
+  public static final int HEARTTIME_FIELD_NUMBER = 3;
   private long heartTime_;
   /**
    * <pre>
    * 发送心跳时间
    * </pre>
    *
-   * <code>uint64 heartTime = 5;</code>
+   * <code>uint64 heartTime = 3;</code>
    */
   public long getHeartTime() {
     return heartTime_;
@@ -228,17 +209,14 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (resultCode_ != 0) {
-      output.writeInt32(1, resultCode_);
-    }
     if (!getMessageBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, message_);
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, message_);
     }
     if (!getIpBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, ip_);
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, ip_);
     }
     if (heartTime_ != 0L) {
-      output.writeUInt64(5, heartTime_);
+      output.writeUInt64(3, heartTime_);
     }
     unknownFields.writeTo(output);
   }
@@ -249,19 +227,15 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (resultCode_ != 0) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(1, resultCode_);
-    }
     if (!getMessageBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, message_);
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, message_);
     }
     if (!getIpBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, ip_);
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, ip_);
     }
     if (heartTime_ != 0L) {
       size += com.google.protobuf.CodedOutputStream
-        .computeUInt64Size(5, heartTime_);
+        .computeUInt64Size(3, heartTime_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -279,8 +253,6 @@ private static final long serialVersionUID = 0L;
     org.huangyr.project.vulcan.proto.VulcanHeartPackage other = (org.huangyr.project.vulcan.proto.VulcanHeartPackage) obj;
 
     boolean result = true;
-    result = result && (getResultCode()
-        == other.getResultCode());
     result = result && getMessage()
         .equals(other.getMessage());
     result = result && getIp()
@@ -298,8 +270,6 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + RESULTCODE_FIELD_NUMBER;
-    hash = (53 * hash) + getResultCode();
     hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
     hash = (53 * hash) + getMessage().hashCode();
     hash = (37 * hash) + IP_FIELD_NUMBER;
@@ -407,21 +377,21 @@ private static final long serialVersionUID = 0L;
    * 心跳数据包
    * </pre>
    *
-   * Protobuf type {@code cn.com.essence.proto.VulcanHeartPackage}
+   * Protobuf type {@code org.huangyr.project.vulcan.proto.VulcanHeartPackage}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:cn.com.essence.proto.VulcanHeartPackage)
+      // @@protoc_insertion_point(builder_implements:org.huangyr.project.vulcan.proto.VulcanHeartPackage)
       org.huangyr.project.vulcan.proto.VulcanHeartPackageOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return org.huangyr.project.vulcan.proto.VulcanTransferProto.internal_static_cn_com_essence_proto_VulcanHeartPackage_descriptor;
+      return org.huangyr.project.vulcan.proto.VulcanTransferProto.internal_static_org_huangyr_project_vulcan_proto_VulcanHeartPackage_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return org.huangyr.project.vulcan.proto.VulcanTransferProto.internal_static_cn_com_essence_proto_VulcanHeartPackage_fieldAccessorTable
+      return org.huangyr.project.vulcan.proto.VulcanTransferProto.internal_static_org_huangyr_project_vulcan_proto_VulcanHeartPackage_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               org.huangyr.project.vulcan.proto.VulcanHeartPackage.class, org.huangyr.project.vulcan.proto.VulcanHeartPackage.Builder.class);
     }
@@ -444,8 +414,6 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      resultCode_ = 0;
-
       message_ = "";
 
       ip_ = "";
@@ -458,7 +426,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return org.huangyr.project.vulcan.proto.VulcanTransferProto.internal_static_cn_com_essence_proto_VulcanHeartPackage_descriptor;
+      return org.huangyr.project.vulcan.proto.VulcanTransferProto.internal_static_org_huangyr_project_vulcan_proto_VulcanHeartPackage_descriptor;
     }
 
     @java.lang.Override
@@ -478,7 +446,6 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public org.huangyr.project.vulcan.proto.VulcanHeartPackage buildPartial() {
       org.huangyr.project.vulcan.proto.VulcanHeartPackage result = new org.huangyr.project.vulcan.proto.VulcanHeartPackage(this);
-      result.resultCode_ = resultCode_;
       result.message_ = message_;
       result.ip_ = ip_;
       result.heartTime_ = heartTime_;
@@ -530,9 +497,6 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(org.huangyr.project.vulcan.proto.VulcanHeartPackage other) {
       if (other == org.huangyr.project.vulcan.proto.VulcanHeartPackage.getDefaultInstance()) return this;
-      if (other.getResultCode() != 0) {
-        setResultCode(other.getResultCode());
-      }
       if (!other.getMessage().isEmpty()) {
         message_ = other.message_;
         onChanged();
@@ -573,51 +537,13 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private int resultCode_ ;
-    /**
-     * <pre>
-     * 请求结果响应码
-     * </pre>
-     *
-     * <code>int32 resultCode = 1;</code>
-     */
-    public int getResultCode() {
-      return resultCode_;
-    }
-    /**
-     * <pre>
-     * 请求结果响应码
-     * </pre>
-     *
-     * <code>int32 resultCode = 1;</code>
-     */
-    public Builder setResultCode(int value) {
-      
-      resultCode_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * 请求结果响应码
-     * </pre>
-     *
-     * <code>int32 resultCode = 1;</code>
-     */
-    public Builder clearResultCode() {
-      
-      resultCode_ = 0;
-      onChanged();
-      return this;
-    }
-
     private java.lang.Object message_ = "";
     /**
      * <pre>
      * 心跳消息
      * </pre>
      *
-     * <code>string message = 2;</code>
+     * <code>string message = 1;</code>
      */
     public java.lang.String getMessage() {
       java.lang.Object ref = message_;
@@ -636,7 +562,7 @@ private static final long serialVersionUID = 0L;
      * 心跳消息
      * </pre>
      *
-     * <code>string message = 2;</code>
+     * <code>string message = 1;</code>
      */
     public com.google.protobuf.ByteString
         getMessageBytes() {
@@ -656,7 +582,7 @@ private static final long serialVersionUID = 0L;
      * 心跳消息
      * </pre>
      *
-     * <code>string message = 2;</code>
+     * <code>string message = 1;</code>
      */
     public Builder setMessage(
         java.lang.String value) {
@@ -673,7 +599,7 @@ private static final long serialVersionUID = 0L;
      * 心跳消息
      * </pre>
      *
-     * <code>string message = 2;</code>
+     * <code>string message = 1;</code>
      */
     public Builder clearMessage() {
       
@@ -686,7 +612,7 @@ private static final long serialVersionUID = 0L;
      * 心跳消息
      * </pre>
      *
-     * <code>string message = 2;</code>
+     * <code>string message = 1;</code>
      */
     public Builder setMessageBytes(
         com.google.protobuf.ByteString value) {
@@ -706,7 +632,7 @@ private static final long serialVersionUID = 0L;
      * 发送心跳的机器IP
      * </pre>
      *
-     * <code>string ip = 3;</code>
+     * <code>string ip = 2;</code>
      */
     public java.lang.String getIp() {
       java.lang.Object ref = ip_;
@@ -725,7 +651,7 @@ private static final long serialVersionUID = 0L;
      * 发送心跳的机器IP
      * </pre>
      *
-     * <code>string ip = 3;</code>
+     * <code>string ip = 2;</code>
      */
     public com.google.protobuf.ByteString
         getIpBytes() {
@@ -745,7 +671,7 @@ private static final long serialVersionUID = 0L;
      * 发送心跳的机器IP
      * </pre>
      *
-     * <code>string ip = 3;</code>
+     * <code>string ip = 2;</code>
      */
     public Builder setIp(
         java.lang.String value) {
@@ -762,7 +688,7 @@ private static final long serialVersionUID = 0L;
      * 发送心跳的机器IP
      * </pre>
      *
-     * <code>string ip = 3;</code>
+     * <code>string ip = 2;</code>
      */
     public Builder clearIp() {
       
@@ -775,7 +701,7 @@ private static final long serialVersionUID = 0L;
      * 发送心跳的机器IP
      * </pre>
      *
-     * <code>string ip = 3;</code>
+     * <code>string ip = 2;</code>
      */
     public Builder setIpBytes(
         com.google.protobuf.ByteString value) {
@@ -795,7 +721,7 @@ private static final long serialVersionUID = 0L;
      * 发送心跳时间
      * </pre>
      *
-     * <code>uint64 heartTime = 5;</code>
+     * <code>uint64 heartTime = 3;</code>
      */
     public long getHeartTime() {
       return heartTime_;
@@ -805,7 +731,7 @@ private static final long serialVersionUID = 0L;
      * 发送心跳时间
      * </pre>
      *
-     * <code>uint64 heartTime = 5;</code>
+     * <code>uint64 heartTime = 3;</code>
      */
     public Builder setHeartTime(long value) {
       
@@ -818,7 +744,7 @@ private static final long serialVersionUID = 0L;
      * 发送心跳时间
      * </pre>
      *
-     * <code>uint64 heartTime = 5;</code>
+     * <code>uint64 heartTime = 3;</code>
      */
     public Builder clearHeartTime() {
       
@@ -839,10 +765,10 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:cn.com.essence.proto.VulcanHeartPackage)
+    // @@protoc_insertion_point(builder_scope:org.huangyr.project.vulcan.proto.VulcanHeartPackage)
   }
 
-  // @@protoc_insertion_point(class_scope:cn.com.essence.proto.VulcanHeartPackage)
+  // @@protoc_insertion_point(class_scope:org.huangyr.project.vulcan.proto.VulcanHeartPackage)
   private static final org.huangyr.project.vulcan.proto.VulcanHeartPackage DEFAULT_INSTANCE;
   static {
     DEFAULT_INSTANCE = new org.huangyr.project.vulcan.proto.VulcanHeartPackage();

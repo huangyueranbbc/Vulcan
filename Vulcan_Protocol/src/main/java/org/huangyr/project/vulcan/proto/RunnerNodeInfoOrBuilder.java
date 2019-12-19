@@ -4,6 +4,6 @@
 package org.huangyr.project.vulcan.proto;
 
 public interface RunnerNodeInfoOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:cn.com.essence.proto.RunnerNodeInfo)
+    // @@protoc_insertion_point(interface_extends:org.huangyr.project.vulcan.proto.RunnerNodeInfo)
     com.google.protobuf.MessageOrBuilder {
 }

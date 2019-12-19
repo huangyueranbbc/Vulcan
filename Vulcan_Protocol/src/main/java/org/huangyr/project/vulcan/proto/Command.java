@@ -8,7 +8,7 @@ package org.huangyr.project.vulcan.proto;
  * 心跳结果命令
  * </pre>
  *
- * Protobuf enum {@code cn.com.essence.proto.Command}
+ * Protobuf enum {@code org.huangyr.project.vulcan.proto.Command}
  */
 public enum Command
     implements com.google.protobuf.ProtocolMessageEnum {
@@ -102,6 +102,6 @@ public enum Command
     this.value = value;
   }
 
-  // @@protoc_insertion_point(enum_scope:cn.com.essence.proto.Command)
+  // @@protoc_insertion_point(enum_scope:org.huangyr.project.vulcan.proto.Command)
 }
 

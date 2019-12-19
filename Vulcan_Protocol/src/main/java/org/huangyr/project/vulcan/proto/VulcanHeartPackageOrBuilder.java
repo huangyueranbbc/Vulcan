@@ -4,24 +4,15 @@
 package org.huangyr.project.vulcan.proto;
 
 public interface VulcanHeartPackageOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:cn.com.essence.proto.VulcanHeartPackage)
+    // @@protoc_insertion_point(interface_extends:org.huangyr.project.vulcan.proto.VulcanHeartPackage)
     com.google.protobuf.MessageOrBuilder {
-
-  /**
-   * <pre>
-   * 请求结果响应码
-   * </pre>
-   *
-   * <code>int32 resultCode = 1;</code>
-   */
-  int getResultCode();
 
   /**
    * <pre>
    * 心跳消息
    * </pre>
    *
-   * <code>string message = 2;</code>
+   * <code>string message = 1;</code>
    */
   java.lang.String getMessage();
   /**
@@ -29,7 +20,7 @@ public interface VulcanHeartPackageOrBuilder extends
    * 心跳消息
    * </pre>
    *
-   * <code>string message = 2;</code>
+   * <code>string message = 1;</code>
    */
   com.google.protobuf.ByteString
       getMessageBytes();
@@ -39,7 +30,7 @@ public interface VulcanHeartPackageOrBuilder extends
    * 发送心跳的机器IP
    * </pre>
    *
-   * <code>string ip = 3;</code>
+   * <code>string ip = 2;</code>
    */
   java.lang.String getIp();
   /**
@@ -47,7 +38,7 @@ public interface VulcanHeartPackageOrBuilder extends
    * 发送心跳的机器IP
    * </pre>
    *
-   * <code>string ip = 3;</code>
+   * <code>string ip = 2;</code>
    */
   com.google.protobuf.ByteString
       getIpBytes();
@@ -57,7 +48,7 @@ public interface VulcanHeartPackageOrBuilder extends
    * 发送心跳时间
    * </pre>
    *
-   * <code>uint64 heartTime = 5;</code>
+   * <code>uint64 heartTime = 3;</code>
    */
   long getHeartTime();
 }

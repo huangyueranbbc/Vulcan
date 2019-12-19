@@ -3,14 +3,13 @@ syntax = "proto3";
 option java_multiple_files = true;
 option java_package = "org.huangyr.project.vulcan.proto";
 option java_outer_classname = "VulcanTransferProto";
-package cn.com.essence.proto;
+package org.huangyr.project.vulcan.proto;
 
 // 心跳数据包
 message VulcanHeartPackage {
-  int32 resultCode = 1; // 请求结果响应码
-  string message = 2; // 心跳消息
-  string ip = 3; // 发送心跳的机器IP
-  uint64 heartTime = 5; // 发送心跳时间
+  string message = 1; // 心跳消息
+  string ip = 2; // 发送心跳的机器IP
+  uint64 heartTime = 3; // 发送心跳时间
 }
 
 // 心跳结果报

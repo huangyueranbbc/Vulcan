@@ -1,7 +1,7 @@
 import org.apache.commons.lang3.time.FastDateFormat;
 import org.apache.log4j.PropertyConfigurator;
-import org.huangyr.project.vulcan.core.MessageUtils;
-import org.huangyr.project.vulcan.core.Server;
+import org.huangyr.project.vulcan.common.SocketUtils;
+import org.huangyr.project.vulcan.common.Server;
 
 import java.io.IOException;
 import java.util.Date;
@@ -36,7 +36,7 @@ public class T1 {
     }
 
     public static void main(String[] args) {
-        String response = MessageUtils.sendSocketKeepAliveMessage("127.0.0.1", 8888, "你好啊", "UTF-8");
+        String response = SocketUtils.sendSocketKeepAliveMessage("127.0.0.1", 8888, "你好啊", "UTF-8");
         System.out.println(response);
     }
 

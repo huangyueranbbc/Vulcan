@@ -8,11 +8,11 @@ package org.huangyr.project.vulcan.proto;
  * runner节点状态信息
  * </pre>
  *
- * Protobuf type {@code cn.com.essence.proto.RunnerNodeInfo}
+ * Protobuf type {@code org.huangyr.project.vulcan.proto.RunnerNodeInfo}
  */
 public  final class RunnerNodeInfo extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:cn.com.essence.proto.RunnerNodeInfo)
+    // @@protoc_insertion_point(message_implements:org.huangyr.project.vulcan.proto.RunnerNodeInfo)
     RunnerNodeInfoOrBuilder {
 private static final long serialVersionUID = 0L;
   // Use RunnerNodeInfo.newBuilder() to construct.
@@ -66,13 +66,13 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return org.huangyr.project.vulcan.proto.VulcanTransferProto.internal_static_cn_com_essence_proto_RunnerNodeInfo_descriptor;
+    return org.huangyr.project.vulcan.proto.VulcanTransferProto.internal_static_org_huangyr_project_vulcan_proto_RunnerNodeInfo_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return org.huangyr.project.vulcan.proto.VulcanTransferProto.internal_static_cn_com_essence_proto_RunnerNodeInfo_fieldAccessorTable
+    return org.huangyr.project.vulcan.proto.VulcanTransferProto.internal_static_org_huangyr_project_vulcan_proto_RunnerNodeInfo_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
             org.huangyr.project.vulcan.proto.RunnerNodeInfo.class, org.huangyr.project.vulcan.proto.RunnerNodeInfo.Builder.class);
   }
@@ -227,21 +227,21 @@ private static final long serialVersionUID = 0L;
    * runner节点状态信息
    * </pre>
    *
-   * Protobuf type {@code cn.com.essence.proto.RunnerNodeInfo}
+   * Protobuf type {@code org.huangyr.project.vulcan.proto.RunnerNodeInfo}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:cn.com.essence.proto.RunnerNodeInfo)
+      // @@protoc_insertion_point(builder_implements:org.huangyr.project.vulcan.proto.RunnerNodeInfo)
       org.huangyr.project.vulcan.proto.RunnerNodeInfoOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return org.huangyr.project.vulcan.proto.VulcanTransferProto.internal_static_cn_com_essence_proto_RunnerNodeInfo_descriptor;
+      return org.huangyr.project.vulcan.proto.VulcanTransferProto.internal_static_org_huangyr_project_vulcan_proto_RunnerNodeInfo_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return org.huangyr.project.vulcan.proto.VulcanTransferProto.internal_static_cn_com_essence_proto_RunnerNodeInfo_fieldAccessorTable
+      return org.huangyr.project.vulcan.proto.VulcanTransferProto.internal_static_org_huangyr_project_vulcan_proto_RunnerNodeInfo_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               org.huangyr.project.vulcan.proto.RunnerNodeInfo.class, org.huangyr.project.vulcan.proto.RunnerNodeInfo.Builder.class);
     }
@@ -270,7 +270,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return org.huangyr.project.vulcan.proto.VulcanTransferProto.internal_static_cn_com_essence_proto_RunnerNodeInfo_descriptor;
+      return org.huangyr.project.vulcan.proto.VulcanTransferProto.internal_static_org_huangyr_project_vulcan_proto_RunnerNodeInfo_descriptor;
     }
 
     @java.lang.Override
@@ -379,10 +379,10 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:cn.com.essence.proto.RunnerNodeInfo)
+    // @@protoc_insertion_point(builder_scope:org.huangyr.project.vulcan.proto.RunnerNodeInfo)
   }
 
-  // @@protoc_insertion_point(class_scope:cn.com.essence.proto.RunnerNodeInfo)
+  // @@protoc_insertion_point(class_scope:org.huangyr.project.vulcan.proto.RunnerNodeInfo)
   private static final org.huangyr.project.vulcan.proto.RunnerNodeInfo DEFAULT_INSTANCE;
   static {
     DEFAULT_INSTANCE = new org.huangyr.project.vulcan.proto.RunnerNodeInfo();

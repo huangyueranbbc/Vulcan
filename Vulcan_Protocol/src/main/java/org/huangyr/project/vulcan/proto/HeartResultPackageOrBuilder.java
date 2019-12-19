@@ -4,7 +4,7 @@
 package org.huangyr.project.vulcan.proto;
 
 public interface HeartResultPackageOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:cn.com.essence.proto.HeartResultPackage)
+    // @@protoc_insertion_point(interface_extends:org.huangyr.project.vulcan.proto.HeartResultPackage)
     com.google.protobuf.MessageOrBuilder {
 
   /**
@@ -39,7 +39,7 @@ public interface HeartResultPackageOrBuilder extends
    * 响应命令
    * </pre>
    *
-   * <code>.cn.com.essence.proto.Command command = 3;</code>
+   * <code>.org.huangyr.project.vulcan.proto.Command command = 3;</code>
    */
   int getCommandValue();
   /**
@@ -47,7 +47,7 @@ public interface HeartResultPackageOrBuilder extends
    * 响应命令
    * </pre>
    *
-   * <code>.cn.com.essence.proto.Command command = 3;</code>
+   * <code>.org.huangyr.project.vulcan.proto.Command command = 3;</code>
    */
   org.huangyr.project.vulcan.proto.Command getCommand();
 
