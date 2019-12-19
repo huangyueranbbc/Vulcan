@@ -13,8 +13,10 @@ import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpRequestDecoder;
 import io.netty.handler.codec.http.HttpResponseEncoder;
 import io.netty.util.concurrent.DefaultThreadFactory;
-import org.apache.log4j.Logger;
 import org.huangyr.project.vulcan.common.net.http.handler.HttpServerHandler;
+import org.huangyr.project.vulcan.common.net.tcp.HeartServer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.nio.channels.spi.SelectorProvider;
 import java.util.concurrent.ThreadFactory;
@@ -28,7 +30,7 @@ import java.util.concurrent.ThreadFactory;
  * @Description: netty服务 http 通信服务
  ******************************************************************************/
 public class HttpServer extends Thread {
-    private Logger log = Logger.getLogger(HttpServer.class);
+    private static Logger log = LoggerFactory.getLogger(HttpServer.class);
     private int port;
     private int bossGroupThreadNum = 1;
     private int workGroupThreadNum = 0;
@@ -81,10 +83,14 @@ public class HttpServer extends Thread {
                     });
             initChannelOption();
             ChannelFuture future = server.bind(port).sync();
-            log.info("HTTP服务启动，服务为 http://localhost:" + port);
+            if (future.isSuccess()) {
+                log.info("http server start success，address is http://localhost:{}", port);
+            } else {
+                log.error("http server start fail.");
+            }
             future.channel().closeFuture().sync();
         } catch (Exception e) {
-            log.error("Server start fail!", e);
+            log.error("http server start error!", e);
         } finally {
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();

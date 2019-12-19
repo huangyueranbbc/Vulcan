@@ -8,14 +8,10 @@ import io.netty.channel.epoll.EpollServerSocketChannel;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
-import io.netty.handler.codec.LengthFieldPrepender;
-import io.netty.handler.codec.string.StringDecoder;
-import io.netty.handler.codec.string.StringEncoder;
-import io.netty.util.CharsetUtil;
 import io.netty.util.concurrent.DefaultThreadFactory;
-import org.apache.log4j.Logger;
-import org.huangyr.project.vulcan.common.net.tcp.handler.SocketServerHandler;
+import org.huangyr.project.vulcan.common.net.tcp.handler.HeartSocketHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.nio.channels.spi.SelectorProvider;
 import java.util.concurrent.ThreadFactory;
@@ -29,7 +25,7 @@ import java.util.concurrent.ThreadFactory;
  * @Description: netty服务 socket通信服务
  ******************************************************************************/
 public class HeartServer extends Thread {
-    private Logger log = Logger.getLogger(HeartServer.class);
+    private static Logger log = LoggerFactory.getLogger(HeartServer.class);
     private int port;
     private int bossGroupThreadNum = 1;
     private int workGroupThreadNum = 0;
@@ -64,15 +60,19 @@ public class HeartServer extends Thread {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
                             ChannelPipeline pipeline = ch.pipeline();
-                            pipeline.addLast(new SocketServerHandler());
+                            pipeline.addLast(new HeartSocketHandler());
                         }
                     });
             initChannelOption();
             ChannelFuture future = server.bind(port).sync();
-            log.info("Socket服务启动，服务为 localhost:" + port);
+            if (future.isSuccess()) {
+                log.info("heart socket server start success，address is localhost:{}", port);
+            } else {
+                log.error("heart socket server start fail.");
+            }
             future.channel().closeFuture().sync();
         } catch (Exception e) {
-            log.error("Server start fail!", e);
+            log.error("heart socket server start error.");
         } finally {
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();

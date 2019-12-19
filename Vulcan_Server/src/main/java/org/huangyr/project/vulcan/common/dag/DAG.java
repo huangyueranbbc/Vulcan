@@ -17,9 +17,8 @@ import java.util.stream.Collectors;
  */
 public final class DAG {
 
-
-  private final LinkedHashSetMultimap outDegree;
-  private final LinkedHashSetMultimap inDegree;
+  private final LinkedHashSetMultimap outDegree; // 出度 子节点
+  private final LinkedHashSetMultimap inDegree; // 入度 父节点
 
   public DAG(final LinkedHashSetMultimap outDegree, final LinkedHashSetMultimap inDegree) {
     this.outDegree = outDegree;

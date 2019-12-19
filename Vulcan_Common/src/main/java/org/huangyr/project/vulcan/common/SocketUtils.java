@@ -103,7 +103,7 @@ public class SocketUtils {
             log.error("send tcp message error. ip:{} port:{} message:{}", ip, port, message, e);
             return null;
         } finally {
-            // 4.释放资源
+//            // 4.释放资源
             IOUtils.closeStream(byteArrayOutputStream);
             IOUtils.closeStream(input);
             IOUtils.closeStream(dos);

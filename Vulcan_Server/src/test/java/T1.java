@@ -1,7 +1,13 @@
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import org.apache.commons.lang3.time.FastDateFormat;
 import org.apache.log4j.PropertyConfigurator;
-import org.huangyr.project.vulcan.common.SocketUtils;
 import org.huangyr.project.vulcan.common.Server;
+import org.huangyr.project.vulcan.common.VulcanUtils;
+import org.huangyr.project.vulcan.common.net.client.Client;
+import org.huangyr.project.vulcan.proto.VulcanHeartPackage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Date;
@@ -35,9 +41,88 @@ public class T1 {
         PropertyConfigurator.configure(properties);
     }
 
+    private static Logger log = LoggerFactory.getLogger(T1.class);
+
     public static void main(String[] args) {
-        String response = SocketUtils.sendSocketKeepAliveMessage("127.0.0.1", 8888, "你好啊", "UTF-8");
-        System.out.println(response);
+
+        Client bootstrap = new Client(8888, "127.0.0.1");
+        bootstrap.start();
+
+        while (true) {
+            try {
+                VulcanHeartPackage.Builder heartBuilder = VulcanHeartPackage.newBuilder();
+                heartBuilder.setIp(VulcanUtils.getHostname());
+                heartBuilder.setHeartTime(VulcanUtils.now());
+                heartBuilder.setMessage("我发送心跳啦!");
+                VulcanHeartPackage heartPackage = heartBuilder.build();
+
+                ByteBuf resp = Unpooled.copiedBuffer(heartPackage.toByteArray());
+                bootstrap.sendMessage(resp);
+                System.out.println("发送心跳成功");
+                Thread.sleep(5000);
+
+                // test1();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+        }
+
+//    private static void test1() {
+//        VulcanHeartPackage.Builder heartBuilder = VulcanHeartPackage.newBuilder();
+//        heartBuilder.setIp(VulcanUtils.getHostname());
+//        heartBuilder.setHeartTime(VulcanUtils.now());
+//        heartBuilder.setMessage("我发送心跳啦!");
+//        VulcanHeartPackage heartPackage = heartBuilder.build();
+//
+//
+//        Socket socket = null;
+//        InputStream input = null;
+//        OutputStream dos = null;
+//        ByteArrayOutputStream byteArrayOutputStream = null;
+//
+//        try {
+//            socket = new Socket("127.0.0.1", 8888);
+//            if (!socket.getKeepAlive()) {
+//                socket.setKeepAlive(true);
+//            }
+//
+//
+//            while (true){
+//                input = socket.getInputStream();
+//                // 2.获取客户端输出流
+//                dos = socket.getOutputStream();
+//                // 3.向服务端发送消息
+//                dos.write(heartPackage.toByteArray());
+//                dos.flush();
+//                log.debug("成功向服务器发送消息");
+//                // 4.获取输入流，并读取服务器端的响应信息
+//                byteArrayOutputStream = new ByteArrayOutputStream();
+//
+//                byte[] buffer = new byte[1024 * 64];
+//                int n = 0;
+//                while (-1 != (n = input.read(buffer))) {
+//                    byteArrayOutputStream.write(buffer, 0, n);
+//                }
+//
+//                HeartResultPackage heartResultPackage = HeartResultPackage.parseFrom(byteArrayOutputStream.toByteArray());
+//                System.out.println("send heart success. get heart response package:" + heartResultPackage.toBuilder());
+//
+//                Thread.sleep(5000);
+//            }
+//
+//        } catch (Exception e) {
+//            log.error("send tcp message error. ip:{} port:{} message:{}", "127.0.0.1", 8888, "aaa", e);
+//        } finally {
+////            // 4.释放资源
+////            IOUtils.closeStream(byteArrayOutputStream);
+////            IOUtils.closeStream(input);
+////            IOUtils.closeStream(dos);
+////            IOUtils.closeStream(socket);
+//        }
+//    }
     }
 
 }
