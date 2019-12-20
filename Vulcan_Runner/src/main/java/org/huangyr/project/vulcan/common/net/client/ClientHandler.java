@@ -3,7 +3,7 @@ package org.huangyr.project.vulcan.common.net.client;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
-import org.huangyr.project.vulcan.proto.HeartResultPackage;
+import org.huangyr.project.vulcan.proto.ServerCommandPackage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,31 +13,36 @@ import org.slf4j.LoggerFactory;
  *
  * @date 2019-12-16 10:55 AM
  * @author: <a href=mailto:@essence.com.cn>黄跃然</a>
- * @Description: Socket长连接处理器
+ * @Description: Socket长连接处理器 处理Server下发的命令
  ******************************************************************************/
 public class ClientHandler extends ChannelInboundHandlerAdapter {
 
     private static Logger log = LoggerFactory.getLogger(ClientHandler.class);
 
     @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        System.out.println("我是客户端：" + msg);
-
-        ByteBuf buf = (ByteBuf) msg;
-        byte[] req = new byte[buf.readableBytes()];
-        buf.readBytes(req);
-
-        HeartResultPackage heartResultPackage = HeartResultPackage.parseFrom(req);
-        log.info("收到Server的指令:{}", heartResultPackage.toBuilder());
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        super.channelActive(ctx);
     }
 
     @Override
-    public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
+    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+        log.info("我是客户端：" + msg);
+        ByteBuf buf = (ByteBuf) msg;
+        byte[] bytes = new byte[buf.readableBytes()];
+        buf.readBytes(bytes);
+
+        ServerCommandPackage heartResultPackage = ServerCommandPackage.parseFrom(bytes);
+        log.info("send heart success. get heart response package:{}", heartResultPackage.toBuilder());
+    }
+
+    @Override
+    public void channelReadComplete(ChannelHandlerContext ctx)  {
         System.out.println("通道读取完毕！");
     }
 
     @Override
-    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
+        log.error("client handler channel has error.", cause);
         if (null != cause) cause.printStackTrace();
         if (null != ctx) ctx.close();
     }

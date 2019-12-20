@@ -1,10 +1,10 @@
 package org.huangyr.project.vulcan.common.service;
 
-import org.huangyr.project.vulcan.common.SocketUtils;
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import org.huangyr.project.vulcan.common.Runner;
 import org.huangyr.project.vulcan.common.VulcanUtils;
-import org.huangyr.project.vulcan.common.common.Constants;
-import org.huangyr.project.vulcan.proto.HeartResultPackage;
+import org.huangyr.project.vulcan.common.net.client.HeartSocketClient;
 import org.huangyr.project.vulcan.proto.VulcanHeartPackage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +22,7 @@ public class HeartService implements Runnable {
     private static Logger log = LoggerFactory.getLogger(HeartService.class);
 
     private Runner runner;
+    HeartSocketClient heartSocketClient;
 
     /**
      * 发送心跳间隔
@@ -33,8 +34,9 @@ public class HeartService implements Runnable {
      */
     private static long LAST_HEART_BEAT = 0;
 
-    public HeartService(Runner runner) {
+    public HeartService(Runner runner, HeartSocketClient heartSocketClient) {
         this.runner = runner;
+        this.heartSocketClient = heartSocketClient;
     }
 
     @Override
@@ -68,9 +70,7 @@ public class HeartService implements Runnable {
                     log.info("start send heart beat! now:{}", startTime);
                     LAST_HEART_BEAT = startTime;
                     // TODO 命令模式 发送心跳
-                    byte[] bytes = sendHeartbeat();
-                    HeartResultPackage heartResultPackage = HeartResultPackage.parseFrom(bytes);
-                    log.info("send heart success. get heart response package:{}", heartResultPackage.toBuilder());
+                    sendHeartbeat();
 //                // TODO 远程调用 上报心跳 datanode和namenode唯一通信方式
 //                DatanodeCommand[] datanodeCommands = nameNode.sendHeartbeat(datanodeRegInfo);
 //
@@ -92,12 +92,13 @@ public class HeartService implements Runnable {
      *
      * @return
      */
-    private byte[] sendHeartbeat() {
+    private void sendHeartbeat() {
         VulcanHeartPackage.Builder heartBuilder = VulcanHeartPackage.newBuilder();
         heartBuilder.setIp(VulcanUtils.getHostname());
         heartBuilder.setHeartTime(runner.now());
         heartBuilder.setMessage("我发送心跳啦!");
         VulcanHeartPackage heartPackage = heartBuilder.build();
-        return SocketUtils.sendSocketKeepAliveMessage(Constants.SERVER_IP, Constants.SERVER_PORT, heartPackage.toByteArray());
+        ByteBuf pb = Unpooled.copiedBuffer(heartPackage.toByteArray());
+        heartSocketClient.sendMessage(pb);
     }
 }

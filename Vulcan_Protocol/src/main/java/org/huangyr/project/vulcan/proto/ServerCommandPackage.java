@@ -8,18 +8,18 @@ package org.huangyr.project.vulcan.proto;
  * 心跳结果报
  * </pre>
  *
- * Protobuf type {@code org.huangyr.project.vulcan.proto.HeartResultPackage}
+ * Protobuf type {@code org.huangyr.project.vulcan.proto.ServerCommandPackage}
  */
-public  final class HeartResultPackage extends
+public  final class ServerCommandPackage extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:org.huangyr.project.vulcan.proto.HeartResultPackage)
-    HeartResultPackageOrBuilder {
+    // @@protoc_insertion_point(message_implements:org.huangyr.project.vulcan.proto.ServerCommandPackage)
+    ServerCommandPackageOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use HeartResultPackage.newBuilder() to construct.
-  private HeartResultPackage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use ServerCommandPackage.newBuilder() to construct.
+  private ServerCommandPackage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private HeartResultPackage() {
+  private ServerCommandPackage() {
     resultCode_ = 0;
     message_ = "";
     command_ = 0;
@@ -33,7 +33,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private HeartResultPackage(
+  private ServerCommandPackage(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -105,15 +105,15 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return org.huangyr.project.vulcan.proto.VulcanTransferProto.internal_static_org_huangyr_project_vulcan_proto_HeartResultPackage_descriptor;
+    return org.huangyr.project.vulcan.proto.VulcanTransferProto.internal_static_org_huangyr_project_vulcan_proto_ServerCommandPackage_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return org.huangyr.project.vulcan.proto.VulcanTransferProto.internal_static_org_huangyr_project_vulcan_proto_HeartResultPackage_fieldAccessorTable
+    return org.huangyr.project.vulcan.proto.VulcanTransferProto.internal_static_org_huangyr_project_vulcan_proto_ServerCommandPackage_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            org.huangyr.project.vulcan.proto.HeartResultPackage.class, org.huangyr.project.vulcan.proto.HeartResultPackage.Builder.class);
+            org.huangyr.project.vulcan.proto.ServerCommandPackage.class, org.huangyr.project.vulcan.proto.ServerCommandPackage.Builder.class);
   }
 
   public static final int RESULTCODE_FIELD_NUMBER = 1;
@@ -309,10 +309,10 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof org.huangyr.project.vulcan.proto.HeartResultPackage)) {
+    if (!(obj instanceof org.huangyr.project.vulcan.proto.ServerCommandPackage)) {
       return super.equals(obj);
     }
-    org.huangyr.project.vulcan.proto.HeartResultPackage other = (org.huangyr.project.vulcan.proto.HeartResultPackage) obj;
+    org.huangyr.project.vulcan.proto.ServerCommandPackage other = (org.huangyr.project.vulcan.proto.ServerCommandPackage) obj;
 
     boolean result = true;
     result = result && (getResultCode()
@@ -357,69 +357,69 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static org.huangyr.project.vulcan.proto.HeartResultPackage parseFrom(
+  public static org.huangyr.project.vulcan.proto.ServerCommandPackage parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static org.huangyr.project.vulcan.proto.HeartResultPackage parseFrom(
+  public static org.huangyr.project.vulcan.proto.ServerCommandPackage parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static org.huangyr.project.vulcan.proto.HeartResultPackage parseFrom(
+  public static org.huangyr.project.vulcan.proto.ServerCommandPackage parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static org.huangyr.project.vulcan.proto.HeartResultPackage parseFrom(
+  public static org.huangyr.project.vulcan.proto.ServerCommandPackage parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static org.huangyr.project.vulcan.proto.HeartResultPackage parseFrom(byte[] data)
+  public static org.huangyr.project.vulcan.proto.ServerCommandPackage parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static org.huangyr.project.vulcan.proto.HeartResultPackage parseFrom(
+  public static org.huangyr.project.vulcan.proto.ServerCommandPackage parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static org.huangyr.project.vulcan.proto.HeartResultPackage parseFrom(java.io.InputStream input)
+  public static org.huangyr.project.vulcan.proto.ServerCommandPackage parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static org.huangyr.project.vulcan.proto.HeartResultPackage parseFrom(
+  public static org.huangyr.project.vulcan.proto.ServerCommandPackage parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static org.huangyr.project.vulcan.proto.HeartResultPackage parseDelimitedFrom(java.io.InputStream input)
+  public static org.huangyr.project.vulcan.proto.ServerCommandPackage parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static org.huangyr.project.vulcan.proto.HeartResultPackage parseDelimitedFrom(
+  public static org.huangyr.project.vulcan.proto.ServerCommandPackage parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static org.huangyr.project.vulcan.proto.HeartResultPackage parseFrom(
+  public static org.huangyr.project.vulcan.proto.ServerCommandPackage parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static org.huangyr.project.vulcan.proto.HeartResultPackage parseFrom(
+  public static org.huangyr.project.vulcan.proto.ServerCommandPackage parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -432,7 +432,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(org.huangyr.project.vulcan.proto.HeartResultPackage prototype) {
+  public static Builder newBuilder(org.huangyr.project.vulcan.proto.ServerCommandPackage prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -452,26 +452,26 @@ private static final long serialVersionUID = 0L;
    * 心跳结果报
    * </pre>
    *
-   * Protobuf type {@code org.huangyr.project.vulcan.proto.HeartResultPackage}
+   * Protobuf type {@code org.huangyr.project.vulcan.proto.ServerCommandPackage}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:org.huangyr.project.vulcan.proto.HeartResultPackage)
-      org.huangyr.project.vulcan.proto.HeartResultPackageOrBuilder {
+      // @@protoc_insertion_point(builder_implements:org.huangyr.project.vulcan.proto.ServerCommandPackage)
+      org.huangyr.project.vulcan.proto.ServerCommandPackageOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return org.huangyr.project.vulcan.proto.VulcanTransferProto.internal_static_org_huangyr_project_vulcan_proto_HeartResultPackage_descriptor;
+      return org.huangyr.project.vulcan.proto.VulcanTransferProto.internal_static_org_huangyr_project_vulcan_proto_ServerCommandPackage_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return org.huangyr.project.vulcan.proto.VulcanTransferProto.internal_static_org_huangyr_project_vulcan_proto_HeartResultPackage_fieldAccessorTable
+      return org.huangyr.project.vulcan.proto.VulcanTransferProto.internal_static_org_huangyr_project_vulcan_proto_ServerCommandPackage_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              org.huangyr.project.vulcan.proto.HeartResultPackage.class, org.huangyr.project.vulcan.proto.HeartResultPackage.Builder.class);
+              org.huangyr.project.vulcan.proto.ServerCommandPackage.class, org.huangyr.project.vulcan.proto.ServerCommandPackage.Builder.class);
     }
 
-    // Construct using org.huangyr.project.vulcan.proto.HeartResultPackage.newBuilder()
+    // Construct using org.huangyr.project.vulcan.proto.ServerCommandPackage.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -507,17 +507,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return org.huangyr.project.vulcan.proto.VulcanTransferProto.internal_static_org_huangyr_project_vulcan_proto_HeartResultPackage_descriptor;
+      return org.huangyr.project.vulcan.proto.VulcanTransferProto.internal_static_org_huangyr_project_vulcan_proto_ServerCommandPackage_descriptor;
     }
 
     @java.lang.Override
-    public org.huangyr.project.vulcan.proto.HeartResultPackage getDefaultInstanceForType() {
-      return org.huangyr.project.vulcan.proto.HeartResultPackage.getDefaultInstance();
+    public org.huangyr.project.vulcan.proto.ServerCommandPackage getDefaultInstanceForType() {
+      return org.huangyr.project.vulcan.proto.ServerCommandPackage.getDefaultInstance();
     }
 
     @java.lang.Override
-    public org.huangyr.project.vulcan.proto.HeartResultPackage build() {
-      org.huangyr.project.vulcan.proto.HeartResultPackage result = buildPartial();
+    public org.huangyr.project.vulcan.proto.ServerCommandPackage build() {
+      org.huangyr.project.vulcan.proto.ServerCommandPackage result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -525,8 +525,8 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public org.huangyr.project.vulcan.proto.HeartResultPackage buildPartial() {
-      org.huangyr.project.vulcan.proto.HeartResultPackage result = new org.huangyr.project.vulcan.proto.HeartResultPackage(this);
+    public org.huangyr.project.vulcan.proto.ServerCommandPackage buildPartial() {
+      org.huangyr.project.vulcan.proto.ServerCommandPackage result = new org.huangyr.project.vulcan.proto.ServerCommandPackage(this);
       result.resultCode_ = resultCode_;
       result.message_ = message_;
       result.command_ = command_;
@@ -571,16 +571,16 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof org.huangyr.project.vulcan.proto.HeartResultPackage) {
-        return mergeFrom((org.huangyr.project.vulcan.proto.HeartResultPackage)other);
+      if (other instanceof org.huangyr.project.vulcan.proto.ServerCommandPackage) {
+        return mergeFrom((org.huangyr.project.vulcan.proto.ServerCommandPackage)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(org.huangyr.project.vulcan.proto.HeartResultPackage other) {
-      if (other == org.huangyr.project.vulcan.proto.HeartResultPackage.getDefaultInstance()) return this;
+    public Builder mergeFrom(org.huangyr.project.vulcan.proto.ServerCommandPackage other) {
+      if (other == org.huangyr.project.vulcan.proto.ServerCommandPackage.getDefaultInstance()) return this;
       if (other.getResultCode() != 0) {
         setResultCode(other.getResultCode());
       }
@@ -615,11 +615,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      org.huangyr.project.vulcan.proto.HeartResultPackage parsedMessage = null;
+      org.huangyr.project.vulcan.proto.ServerCommandPackage parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (org.huangyr.project.vulcan.proto.HeartResultPackage) e.getUnfinishedMessage();
+        parsedMessage = (org.huangyr.project.vulcan.proto.ServerCommandPackage) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -947,41 +947,41 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:org.huangyr.project.vulcan.proto.HeartResultPackage)
+    // @@protoc_insertion_point(builder_scope:org.huangyr.project.vulcan.proto.ServerCommandPackage)
   }
 
-  // @@protoc_insertion_point(class_scope:org.huangyr.project.vulcan.proto.HeartResultPackage)
-  private static final org.huangyr.project.vulcan.proto.HeartResultPackage DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:org.huangyr.project.vulcan.proto.ServerCommandPackage)
+  private static final org.huangyr.project.vulcan.proto.ServerCommandPackage DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new org.huangyr.project.vulcan.proto.HeartResultPackage();
+    DEFAULT_INSTANCE = new org.huangyr.project.vulcan.proto.ServerCommandPackage();
   }
 
-  public static org.huangyr.project.vulcan.proto.HeartResultPackage getDefaultInstance() {
+  public static org.huangyr.project.vulcan.proto.ServerCommandPackage getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<HeartResultPackage>
-      PARSER = new com.google.protobuf.AbstractParser<HeartResultPackage>() {
+  private static final com.google.protobuf.Parser<ServerCommandPackage>
+      PARSER = new com.google.protobuf.AbstractParser<ServerCommandPackage>() {
     @java.lang.Override
-    public HeartResultPackage parsePartialFrom(
+    public ServerCommandPackage parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new HeartResultPackage(input, extensionRegistry);
+      return new ServerCommandPackage(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<HeartResultPackage> parser() {
+  public static com.google.protobuf.Parser<ServerCommandPackage> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<HeartResultPackage> getParserForType() {
+  public com.google.protobuf.Parser<ServerCommandPackage> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public org.huangyr.project.vulcan.proto.HeartResultPackage getDefaultInstanceForType() {
+  public org.huangyr.project.vulcan.proto.ServerCommandPackage getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

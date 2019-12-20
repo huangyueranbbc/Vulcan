@@ -3,11 +3,10 @@ package org.huangyr.project.vulcan.common.net.tcp.handler;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.*;
-import io.netty.channel.group.ChannelGroupFuture;
 import org.huangyr.project.vulcan.common.VulcanUtils;
 import org.huangyr.project.vulcan.common.net.config.NettyConfig;
 import org.huangyr.project.vulcan.proto.Command;
-import org.huangyr.project.vulcan.proto.HeartResultPackage;
+import org.huangyr.project.vulcan.proto.ServerCommandPackage;
 import org.huangyr.project.vulcan.proto.VulcanHeartPackage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -59,6 +58,7 @@ public class HeartSocketHandler extends ChannelInboundHandlerAdapter {
      */
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
+        log.error("heart socket handler channel has error.", cause);
         cause.printStackTrace();
         ctx.close();
     }
@@ -78,7 +78,7 @@ public class HeartSocketHandler extends ChannelInboundHandlerAdapter {
             log.info("get heart package data:{}", vulcanHeartPackage);
 
             // TODO 处理心跳信息
-            HeartResultPackage.Builder heartResultBuilder = HeartResultPackage.newBuilder();
+            ServerCommandPackage.Builder heartResultBuilder = ServerCommandPackage.newBuilder();
             heartResultBuilder.setResultCode(200);
             heartResultBuilder.setMessage(VulcanUtils.getHostname() + "我收到你的心跳啦!");
             heartResultBuilder.setCommand(Command.NORMAL);
@@ -98,7 +98,7 @@ public class HeartSocketHandler extends ChannelInboundHandlerAdapter {
                 //打印出所有客户端的远程地址
                 log.debug("get client:" + String.valueOf((iterator.next()).remoteAddress()));
             }
-            HeartResultPackage.Builder shutdownCommand = HeartResultPackage.newBuilder();
+            ServerCommandPackage.Builder shutdownCommand = ServerCommandPackage.newBuilder();
             shutdownCommand.setResultCode(500);
             shutdownCommand.setMessage(VulcanUtils.getHostname() + "我收到你的心跳啦!");
             shutdownCommand.setCommand(Command.UPGRADE);
@@ -106,8 +106,10 @@ public class HeartSocketHandler extends ChannelInboundHandlerAdapter {
             shutdownCommand.setReceiveHeartTime(VulcanUtils.now());
             shutdownCommand.setResponseHeartTime(VulcanUtils.now());
             ByteBuf resp1 = Unpooled.copiedBuffer(shutdownCommand.build().toByteArray());
-            ChannelGroupFuture channelFutures = NettyConfig.group.writeAndFlush(resp1);
-            log.info("send result:{}", channelFutures.isSuccess());
+
+            // TODO写多次
+            // ChannelGroupFuture channelFutures = NettyConfig.group.writeAndFlush(resp1);
+            // log.info("send result:{}", channelFutures.isSuccess());
 
             // channelFuture.addListener(ChannelFutureListener.CLOSE); // 长连接 不监控该事件
             log.info("handle the node:{} heart success.", vulcanHeartPackage.getIp());

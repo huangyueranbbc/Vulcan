@@ -2,9 +2,8 @@ import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import org.apache.commons.lang3.time.FastDateFormat;
 import org.apache.log4j.PropertyConfigurator;
-import org.huangyr.project.vulcan.common.Server;
 import org.huangyr.project.vulcan.common.VulcanUtils;
-import org.huangyr.project.vulcan.common.net.client.Client;
+import org.huangyr.project.vulcan.common.net.client.HeartSocketClient;
 import org.huangyr.project.vulcan.proto.VulcanHeartPackage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,12 +27,12 @@ public class T1 {
     static {
         Properties properties = new Properties();
         try {
-            properties.load(Server.class.getClassLoader().getResourceAsStream("log4j.properties"));
+            properties.load(T1.class.getClassLoader().getResourceAsStream("log4j.properties"));
             String time = FastDateFormat.getInstance("yyyy-MM-dd-HH").format(new Date());
             String logDir = System.getenv("VULCAN_LOG_DIR") + "/vulcan/server/";
-            properties.setProperty("log4j.appender.FILE_INFO.File", logDir + "Vulcan_Server_INFO_" + time + ".log");
-            properties.setProperty("log4j.appender.FILE_WARN.File", logDir + "Vulcan_Server_WARN_" + time + ".log");
-            properties.setProperty("log4j.appender.FILE_ERROR.File", logDir + "Vulcan_Server_ERROR_" + time + ".log");
+            properties.setProperty("log4j.appender.FILE_INFO.File", logDir + "T1_INFO_" + time + ".log");
+            properties.setProperty("log4j.appender.FILE_WARN.File", logDir + "T1_WARN_" + time + ".log");
+            properties.setProperty("log4j.appender.FILE_ERROR.File", logDir + "T1_ERROR_" + time + ".log");
         } catch (IOException e) {
             System.out.println("load log4j.properties exception." + e.fillInStackTrace());
             System.exit(-1);
@@ -45,7 +44,8 @@ public class T1 {
 
     public static void main(String[] args) {
 
-        Client bootstrap = new Client(8888, "127.0.0.1");
+        // RunnerSocket服务客户端 接收并处理Server下发的指令
+        HeartSocketClient bootstrap = new HeartSocketClient(8888, "127.0.0.1", 1, false);
         bootstrap.start();
 
         while (true) {
@@ -59,12 +59,12 @@ public class T1 {
                 ByteBuf resp = Unpooled.copiedBuffer(heartPackage.toByteArray());
                 bootstrap.sendMessage(resp);
                 System.out.println("发送心跳成功");
-                Thread.sleep(5000);
+                Thread.sleep(10);
 
                 // test1();
 
             } catch (Exception e) {
-                e.printStackTrace();
+                log.error("has error .", e);
             }
 
 
@@ -107,7 +107,7 @@ public class T1 {
 //                    byteArrayOutputStream.write(buffer, 0, n);
 //                }
 //
-//                HeartResultPackage heartResultPackage = HeartResultPackage.parseFrom(byteArrayOutputStream.toByteArray());
+//                ServerCommandPackage heartResultPackage = ServerCommandPackage.parseFrom(byteArrayOutputStream.toByteArray());
 //                System.out.println("send heart success. get heart response package:" + heartResultPackage.toBuilder());
 //
 //                Thread.sleep(5000);

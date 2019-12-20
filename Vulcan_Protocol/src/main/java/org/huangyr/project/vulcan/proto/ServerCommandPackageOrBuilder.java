@@ -3,8 +3,8 @@
 
 package org.huangyr.project.vulcan.proto;
 
-public interface HeartResultPackageOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:org.huangyr.project.vulcan.proto.HeartResultPackage)
+public interface ServerCommandPackageOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:org.huangyr.project.vulcan.proto.ServerCommandPackage)
     com.google.protobuf.MessageOrBuilder {
 
   /**

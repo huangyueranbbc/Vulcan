@@ -8,6 +8,7 @@ import io.netty.channel.epoll.EpollServerSocketChannel;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.memcache.binary.BinaryMemcacheObjectAggregator;
 import io.netty.util.concurrent.DefaultThreadFactory;
 import org.huangyr.project.vulcan.common.net.tcp.handler.HeartSocketHandler;
 import org.slf4j.Logger;
@@ -27,12 +28,12 @@ import java.util.concurrent.ThreadFactory;
 public class HeartServer extends Thread {
     private static Logger log = LoggerFactory.getLogger(HeartServer.class);
     private int port;
-    private int bossGroupThreadNum = 1;
+    private int bossGroupThreadNum = 0;
     private int workGroupThreadNum = 0;
     private boolean userEPoll = true;
     private EventLoopGroup bossGroup = null;
     private EventLoopGroup workerGroup = null;
-    ServerBootstrap server = null;
+    private ServerBootstrap server = null;
 
     public HeartServer(int port, int bossGroupThreadNum, int workGroupThreadNum, boolean userEPoll) {
         this.port = port;
@@ -60,6 +61,7 @@ public class HeartServer extends Thread {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
                             ChannelPipeline pipeline = ch.pipeline();
+                            pipeline.addLast(new BinaryMemcacheObjectAggregator(1024 * 1024));
                             pipeline.addLast(new HeartSocketHandler());
                         }
                     });
@@ -144,10 +146,10 @@ public class HeartServer extends Thread {
     }
 
     private ThreadFactory getBossGroupThreadFactory() {
-        return new DefaultThreadFactory("T_BOSS_GROUP");
+        return new DefaultThreadFactory("VULCAN_HEART_SERVER_GROUP");
     }
 
     private ThreadFactory getWorkGroupThreadFactory() {
-        return new DefaultThreadFactory("T_BOSS_GROUP");
+        return new DefaultThreadFactory("VULCAN_HEART_SERVER_GROUP");
     }
 }

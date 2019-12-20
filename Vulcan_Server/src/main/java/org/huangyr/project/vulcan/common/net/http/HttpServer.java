@@ -12,6 +12,7 @@ import io.netty.handler.codec.http.HttpContentCompressor;
 import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpRequestDecoder;
 import io.netty.handler.codec.http.HttpResponseEncoder;
+import io.netty.handler.codec.memcache.binary.BinaryMemcacheObjectAggregator;
 import io.netty.util.concurrent.DefaultThreadFactory;
 import org.huangyr.project.vulcan.common.net.http.handler.HttpServerHandler;
 import org.huangyr.project.vulcan.common.net.tcp.HeartServer;
@@ -154,10 +155,10 @@ public class HttpServer extends Thread {
     }
 
     private ThreadFactory getBossGroupThreadFactory() {
-        return new DefaultThreadFactory("T_BOSS_GROUP");
+        return new DefaultThreadFactory("VULCAN_HTTP_GROUP");
     }
 
     private ThreadFactory getWorkGroupThreadFactory() {
-        return new DefaultThreadFactory("T_BOSS_GROUP");
+        return new DefaultThreadFactory("VULCAN_HTTP_GROUP");
     }
 }

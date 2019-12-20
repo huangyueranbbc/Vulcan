@@ -4,6 +4,7 @@ import org.apache.commons.lang3.time.FastDateFormat;
 import org.apache.log4j.PropertyConfigurator;
 import org.huangyr.project.vulcan.common.common.Constants;
 import org.huangyr.project.vulcan.common.common.StartupOption;
+import org.huangyr.project.vulcan.common.net.client.HeartSocketClient;
 import org.huangyr.project.vulcan.common.service.HeartService;
 import org.huangyr.project.vulcan.common.service.LeaseManagerService;
 import org.slf4j.Logger;
@@ -102,9 +103,12 @@ public class Runner implements Runnable {
      */
     private static Runner initRunner() {
         Runner runner = new Runner();
+        // 创建和Server通信的Socket连接
+        HeartSocketClient heartSocketClient = new HeartSocketClient(8888, "127.0.0.1", 1, false);
+        heartSocketClient.start();
         // 初始化心跳请求线程
-        heartThreadPool.execute(new HeartService(runner));
-        heartThreadPool.execute(new LeaseManagerService(runner));
+        heartThreadPool.execute(new HeartService(runner, heartSocketClient));
+        lmThreadPool.execute(new LeaseManagerService(runner));
         return new Runner();
     }
 

@@ -55,6 +55,7 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<HttpObject> {
      */
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
+        log.error("http server handler channel has error.", cause);
         cause.printStackTrace();
         ctx.close();
     }

@@ -20,10 +20,10 @@ public final class VulcanTransferProto {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_org_huangyr_project_vulcan_proto_VulcanHeartPackage_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_org_huangyr_project_vulcan_proto_HeartResultPackage_descriptor;
+    internal_static_org_huangyr_project_vulcan_proto_ServerCommandPackage_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_org_huangyr_project_vulcan_proto_HeartResultPackage_fieldAccessorTable;
+      internal_static_org_huangyr_project_vulcan_proto_ServerCommandPackage_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
     internal_static_org_huangyr_project_vulcan_proto_RunnerNodeInfo_descriptor;
   static final 
@@ -41,15 +41,15 @@ public final class VulcanTransferProto {
       "\n\031VulcanTransferProto.proto\022 org.huangyr" +
       ".project.vulcan.proto\"D\n\022VulcanHeartPack" +
       "age\022\017\n\007message\030\001 \001(\t\022\n\n\002ip\030\002 \001(\t\022\021\n\thear" +
-      "tTime\030\003 \001(\004\"\301\001\n\022HeartResultPackage\022\022\n\nre" +
-      "sultCode\030\001 \001(\005\022\017\n\007message\030\002 \001(\t\022:\n\007comma" +
-      "nd\030\003 \001(\0162).org.huangyr.project.vulcan.pr" +
-      "oto.Command\022\025\n\rsendHeartTime\030\004 \001(\004\022\030\n\020re" +
-      "ceiveHeartTime\030\005 \001(\004\022\031\n\021responseHeartTim" +
-      "e\030\006 \001(\004\"\020\n\016RunnerNodeInfo*\"\n\007Command\022\n\n\006" +
-      "NORMAL\020\000\022\013\n\007UPGRADE\020\001B9\n org.huangyr.pro" +
-      "ject.vulcan.protoB\023VulcanTransferProtoP\001" +
-      "b\006proto3"
+      "tTime\030\003 \001(\004\"\303\001\n\024ServerCommandPackage\022\022\n\n" +
+      "resultCode\030\001 \001(\005\022\017\n\007message\030\002 \001(\t\022:\n\007com" +
+      "mand\030\003 \001(\0162).org.huangyr.project.vulcan." +
+      "proto.Command\022\025\n\rsendHeartTime\030\004 \001(\004\022\030\n\020" +
+      "receiveHeartTime\030\005 \001(\004\022\031\n\021responseHeartT" +
+      "ime\030\006 \001(\004\"\020\n\016RunnerNodeInfo*\"\n\007Command\022\n" +
+      "\n\006NORMAL\020\000\022\013\n\007UPGRADE\020\001B9\n org.huangyr.p" +
+      "roject.vulcan.protoB\023VulcanTransferProto" +
+      "P\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -69,11 +69,11 @@ public final class VulcanTransferProto {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_org_huangyr_project_vulcan_proto_VulcanHeartPackage_descriptor,
         new java.lang.String[] { "Message", "Ip", "HeartTime", });
-    internal_static_org_huangyr_project_vulcan_proto_HeartResultPackage_descriptor =
+    internal_static_org_huangyr_project_vulcan_proto_ServerCommandPackage_descriptor =
       getDescriptor().getMessageTypes().get(1);
-    internal_static_org_huangyr_project_vulcan_proto_HeartResultPackage_fieldAccessorTable = new
+    internal_static_org_huangyr_project_vulcan_proto_ServerCommandPackage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_org_huangyr_project_vulcan_proto_HeartResultPackage_descriptor,
+        internal_static_org_huangyr_project_vulcan_proto_ServerCommandPackage_descriptor,
         new java.lang.String[] { "ResultCode", "Message", "Command", "SendHeartTime", "ReceiveHeartTime", "ResponseHeartTime", });
     internal_static_org_huangyr_project_vulcan_proto_RunnerNodeInfo_descriptor =
       getDescriptor().getMessageTypes().get(2);

@@ -13,7 +13,7 @@ message VulcanHeartPackage {
 }
 
 // 心跳结果报
-message HeartResultPackage{
+message ServerCommandPackage{
   int32 resultCode = 1; // 心跳响应结果
   string message = 2; // 心跳结果消息
   Command command = 3; // 响应命令
