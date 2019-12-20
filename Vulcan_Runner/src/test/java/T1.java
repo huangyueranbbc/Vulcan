@@ -2,8 +2,9 @@ import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import org.apache.commons.lang3.time.FastDateFormat;
 import org.apache.log4j.PropertyConfigurator;
+import org.huangyr.project.vulcan.common.DateUtils;
 import org.huangyr.project.vulcan.common.VulcanUtils;
-import org.huangyr.project.vulcan.common.net.client.HeartSocketClient;
+import org.huangyr.project.vulcan.net.client.HeartSocketClient;
 import org.huangyr.project.vulcan.proto.VulcanHeartPackage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,13 +53,12 @@ public class T1 {
             try {
                 VulcanHeartPackage.Builder heartBuilder = VulcanHeartPackage.newBuilder();
                 heartBuilder.setIp(VulcanUtils.getHostname());
-                heartBuilder.setHeartTime(VulcanUtils.now());
+                heartBuilder.setHeartTime(DateUtils.now());
                 heartBuilder.setMessage("我发送心跳啦!");
                 VulcanHeartPackage heartPackage = heartBuilder.build();
 
                 ByteBuf resp = Unpooled.copiedBuffer(heartPackage.toByteArray());
                 bootstrap.sendMessage(resp);
-                System.out.println("发送心跳成功");
                 Thread.sleep(10);
 
                 // test1();

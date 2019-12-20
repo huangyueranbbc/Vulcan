@@ -21,10 +21,8 @@ private static final long serialVersionUID = 0L;
   }
   private ServerCommandPackage() {
     resultCode_ = 0;
-    message_ = "";
     command_ = 0;
-    sendHeartTime_ = 0L;
-    receiveHeartTime_ = 0L;
+    message_ = "";
     responseHeartTime_ = 0L;
   }
 
@@ -57,29 +55,19 @@ private static final long serialVersionUID = 0L;
             resultCode_ = input.readInt32();
             break;
           }
-          case 18: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            message_ = s;
-            break;
-          }
-          case 24: {
+          case 16: {
             int rawValue = input.readEnum();
 
             command_ = rawValue;
             break;
           }
+          case 26: {
+            java.lang.String s = input.readStringRequireUtf8();
+
+            message_ = s;
+            break;
+          }
           case 32: {
-
-            sendHeartTime_ = input.readUInt64();
-            break;
-          }
-          case 40: {
-
-            receiveHeartTime_ = input.readUInt64();
-            break;
-          }
-          case 48: {
 
             responseHeartTime_ = input.readUInt64();
             break;
@@ -120,7 +108,7 @@ private static final long serialVersionUID = 0L;
   private int resultCode_;
   /**
    * <pre>
-   * 心跳响应结果
+   * 响应结果 / 消息标识
    * </pre>
    *
    * <code>int32 resultCode = 1;</code>
@@ -129,14 +117,39 @@ private static final long serialVersionUID = 0L;
     return resultCode_;
   }
 
-  public static final int MESSAGE_FIELD_NUMBER = 2;
+  public static final int COMMAND_FIELD_NUMBER = 2;
+  private int command_;
+  /**
+   * <pre>
+   * Server指令
+   * </pre>
+   *
+   * <code>.org.huangyr.project.vulcan.proto.Command command = 2;</code>
+   */
+  public int getCommandValue() {
+    return command_;
+  }
+  /**
+   * <pre>
+   * Server指令
+   * </pre>
+   *
+   * <code>.org.huangyr.project.vulcan.proto.Command command = 2;</code>
+   */
+  public org.huangyr.project.vulcan.proto.Command getCommand() {
+    @SuppressWarnings("deprecation")
+    org.huangyr.project.vulcan.proto.Command result = org.huangyr.project.vulcan.proto.Command.valueOf(command_);
+    return result == null ? org.huangyr.project.vulcan.proto.Command.UNRECOGNIZED : result;
+  }
+
+  public static final int MESSAGE_FIELD_NUMBER = 3;
   private volatile java.lang.Object message_;
   /**
    * <pre>
-   * 心跳结果消息
+   * Server指令详情
    * </pre>
    *
-   * <code>string message = 2;</code>
+   * <code>string message = 3;</code>
    */
   public java.lang.String getMessage() {
     java.lang.Object ref = message_;
@@ -152,10 +165,10 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * 心跳结果消息
+   * Server指令详情
    * </pre>
    *
-   * <code>string message = 2;</code>
+   * <code>string message = 3;</code>
    */
   public com.google.protobuf.ByteString
       getMessageBytes() {
@@ -171,65 +184,14 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int COMMAND_FIELD_NUMBER = 3;
-  private int command_;
-  /**
-   * <pre>
-   * 响应命令
-   * </pre>
-   *
-   * <code>.org.huangyr.project.vulcan.proto.Command command = 3;</code>
-   */
-  public int getCommandValue() {
-    return command_;
-  }
-  /**
-   * <pre>
-   * 响应命令
-   * </pre>
-   *
-   * <code>.org.huangyr.project.vulcan.proto.Command command = 3;</code>
-   */
-  public org.huangyr.project.vulcan.proto.Command getCommand() {
-    @SuppressWarnings("deprecation")
-    org.huangyr.project.vulcan.proto.Command result = org.huangyr.project.vulcan.proto.Command.valueOf(command_);
-    return result == null ? org.huangyr.project.vulcan.proto.Command.UNRECOGNIZED : result;
-  }
-
-  public static final int SENDHEARTTIME_FIELD_NUMBER = 4;
-  private long sendHeartTime_;
-  /**
-   * <pre>
-   * 发送心跳时间
-   * </pre>
-   *
-   * <code>uint64 sendHeartTime = 4;</code>
-   */
-  public long getSendHeartTime() {
-    return sendHeartTime_;
-  }
-
-  public static final int RECEIVEHEARTTIME_FIELD_NUMBER = 5;
-  private long receiveHeartTime_;
-  /**
-   * <pre>
-   * 收到心跳时间
-   * </pre>
-   *
-   * <code>uint64 receiveHeartTime = 5;</code>
-   */
-  public long getReceiveHeartTime() {
-    return receiveHeartTime_;
-  }
-
-  public static final int RESPONSEHEARTTIME_FIELD_NUMBER = 6;
+  public static final int RESPONSEHEARTTIME_FIELD_NUMBER = 4;
   private long responseHeartTime_;
   /**
    * <pre>
-   * 心跳响应时间
+   * 消息发送时间
    * </pre>
    *
-   * <code>uint64 responseHeartTime = 6;</code>
+   * <code>uint64 responseHeartTime = 4;</code>
    */
   public long getResponseHeartTime() {
     return responseHeartTime_;
@@ -252,20 +214,14 @@ private static final long serialVersionUID = 0L;
     if (resultCode_ != 0) {
       output.writeInt32(1, resultCode_);
     }
-    if (!getMessageBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, message_);
-    }
     if (command_ != org.huangyr.project.vulcan.proto.Command.NORMAL.getNumber()) {
-      output.writeEnum(3, command_);
+      output.writeEnum(2, command_);
     }
-    if (sendHeartTime_ != 0L) {
-      output.writeUInt64(4, sendHeartTime_);
-    }
-    if (receiveHeartTime_ != 0L) {
-      output.writeUInt64(5, receiveHeartTime_);
+    if (!getMessageBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, message_);
     }
     if (responseHeartTime_ != 0L) {
-      output.writeUInt64(6, responseHeartTime_);
+      output.writeUInt64(4, responseHeartTime_);
     }
     unknownFields.writeTo(output);
   }
@@ -280,24 +236,16 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeInt32Size(1, resultCode_);
     }
-    if (!getMessageBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, message_);
-    }
     if (command_ != org.huangyr.project.vulcan.proto.Command.NORMAL.getNumber()) {
       size += com.google.protobuf.CodedOutputStream
-        .computeEnumSize(3, command_);
+        .computeEnumSize(2, command_);
     }
-    if (sendHeartTime_ != 0L) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeUInt64Size(4, sendHeartTime_);
-    }
-    if (receiveHeartTime_ != 0L) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeUInt64Size(5, receiveHeartTime_);
+    if (!getMessageBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, message_);
     }
     if (responseHeartTime_ != 0L) {
       size += com.google.protobuf.CodedOutputStream
-        .computeUInt64Size(6, responseHeartTime_);
+        .computeUInt64Size(4, responseHeartTime_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -317,13 +265,9 @@ private static final long serialVersionUID = 0L;
     boolean result = true;
     result = result && (getResultCode()
         == other.getResultCode());
+    result = result && command_ == other.command_;
     result = result && getMessage()
         .equals(other.getMessage());
-    result = result && command_ == other.command_;
-    result = result && (getSendHeartTime()
-        == other.getSendHeartTime());
-    result = result && (getReceiveHeartTime()
-        == other.getReceiveHeartTime());
     result = result && (getResponseHeartTime()
         == other.getResponseHeartTime());
     result = result && unknownFields.equals(other.unknownFields);
@@ -339,16 +283,10 @@ private static final long serialVersionUID = 0L;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + RESULTCODE_FIELD_NUMBER;
     hash = (53 * hash) + getResultCode();
-    hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
-    hash = (53 * hash) + getMessage().hashCode();
     hash = (37 * hash) + COMMAND_FIELD_NUMBER;
     hash = (53 * hash) + command_;
-    hash = (37 * hash) + SENDHEARTTIME_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        getSendHeartTime());
-    hash = (37 * hash) + RECEIVEHEARTTIME_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        getReceiveHeartTime());
+    hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
+    hash = (53 * hash) + getMessage().hashCode();
     hash = (37 * hash) + RESPONSEHEARTTIME_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         getResponseHeartTime());
@@ -491,13 +429,9 @@ private static final long serialVersionUID = 0L;
       super.clear();
       resultCode_ = 0;
 
-      message_ = "";
-
       command_ = 0;
 
-      sendHeartTime_ = 0L;
-
-      receiveHeartTime_ = 0L;
+      message_ = "";
 
       responseHeartTime_ = 0L;
 
@@ -528,10 +462,8 @@ private static final long serialVersionUID = 0L;
     public org.huangyr.project.vulcan.proto.ServerCommandPackage buildPartial() {
       org.huangyr.project.vulcan.proto.ServerCommandPackage result = new org.huangyr.project.vulcan.proto.ServerCommandPackage(this);
       result.resultCode_ = resultCode_;
-      result.message_ = message_;
       result.command_ = command_;
-      result.sendHeartTime_ = sendHeartTime_;
-      result.receiveHeartTime_ = receiveHeartTime_;
+      result.message_ = message_;
       result.responseHeartTime_ = responseHeartTime_;
       onBuilt();
       return result;
@@ -584,18 +516,12 @@ private static final long serialVersionUID = 0L;
       if (other.getResultCode() != 0) {
         setResultCode(other.getResultCode());
       }
-      if (!other.getMessage().isEmpty()) {
-        message_ = other.message_;
-        onChanged();
-      }
       if (other.command_ != 0) {
         setCommandValue(other.getCommandValue());
       }
-      if (other.getSendHeartTime() != 0L) {
-        setSendHeartTime(other.getSendHeartTime());
-      }
-      if (other.getReceiveHeartTime() != 0L) {
-        setReceiveHeartTime(other.getReceiveHeartTime());
+      if (!other.getMessage().isEmpty()) {
+        message_ = other.message_;
+        onChanged();
       }
       if (other.getResponseHeartTime() != 0L) {
         setResponseHeartTime(other.getResponseHeartTime());
@@ -632,7 +558,7 @@ private static final long serialVersionUID = 0L;
     private int resultCode_ ;
     /**
      * <pre>
-     * 心跳响应结果
+     * 响应结果 / 消息标识
      * </pre>
      *
      * <code>int32 resultCode = 1;</code>
@@ -642,7 +568,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * 心跳响应结果
+     * 响应结果 / 消息标识
      * </pre>
      *
      * <code>int32 resultCode = 1;</code>
@@ -655,7 +581,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * 心跳响应结果
+     * 响应结果 / 消息标识
      * </pre>
      *
      * <code>int32 resultCode = 1;</code>
@@ -667,13 +593,78 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
+    private int command_ = 0;
+    /**
+     * <pre>
+     * Server指令
+     * </pre>
+     *
+     * <code>.org.huangyr.project.vulcan.proto.Command command = 2;</code>
+     */
+    public int getCommandValue() {
+      return command_;
+    }
+    /**
+     * <pre>
+     * Server指令
+     * </pre>
+     *
+     * <code>.org.huangyr.project.vulcan.proto.Command command = 2;</code>
+     */
+    public Builder setCommandValue(int value) {
+      command_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Server指令
+     * </pre>
+     *
+     * <code>.org.huangyr.project.vulcan.proto.Command command = 2;</code>
+     */
+    public org.huangyr.project.vulcan.proto.Command getCommand() {
+      @SuppressWarnings("deprecation")
+      org.huangyr.project.vulcan.proto.Command result = org.huangyr.project.vulcan.proto.Command.valueOf(command_);
+      return result == null ? org.huangyr.project.vulcan.proto.Command.UNRECOGNIZED : result;
+    }
+    /**
+     * <pre>
+     * Server指令
+     * </pre>
+     *
+     * <code>.org.huangyr.project.vulcan.proto.Command command = 2;</code>
+     */
+    public Builder setCommand(org.huangyr.project.vulcan.proto.Command value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      command_ = value.getNumber();
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Server指令
+     * </pre>
+     *
+     * <code>.org.huangyr.project.vulcan.proto.Command command = 2;</code>
+     */
+    public Builder clearCommand() {
+      
+      command_ = 0;
+      onChanged();
+      return this;
+    }
+
     private java.lang.Object message_ = "";
     /**
      * <pre>
-     * 心跳结果消息
+     * Server指令详情
      * </pre>
      *
-     * <code>string message = 2;</code>
+     * <code>string message = 3;</code>
      */
     public java.lang.String getMessage() {
       java.lang.Object ref = message_;
@@ -689,10 +680,10 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * 心跳结果消息
+     * Server指令详情
      * </pre>
      *
-     * <code>string message = 2;</code>
+     * <code>string message = 3;</code>
      */
     public com.google.protobuf.ByteString
         getMessageBytes() {
@@ -709,10 +700,10 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * 心跳结果消息
+     * Server指令详情
      * </pre>
      *
-     * <code>string message = 2;</code>
+     * <code>string message = 3;</code>
      */
     public Builder setMessage(
         java.lang.String value) {
@@ -726,10 +717,10 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * 心跳结果消息
+     * Server指令详情
      * </pre>
      *
-     * <code>string message = 2;</code>
+     * <code>string message = 3;</code>
      */
     public Builder clearMessage() {
       
@@ -739,10 +730,10 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * 心跳结果消息
+     * Server指令详情
      * </pre>
      *
-     * <code>string message = 2;</code>
+     * <code>string message = 3;</code>
      */
     public Builder setMessageBytes(
         com.google.protobuf.ByteString value) {
@@ -756,164 +747,23 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private int command_ = 0;
-    /**
-     * <pre>
-     * 响应命令
-     * </pre>
-     *
-     * <code>.org.huangyr.project.vulcan.proto.Command command = 3;</code>
-     */
-    public int getCommandValue() {
-      return command_;
-    }
-    /**
-     * <pre>
-     * 响应命令
-     * </pre>
-     *
-     * <code>.org.huangyr.project.vulcan.proto.Command command = 3;</code>
-     */
-    public Builder setCommandValue(int value) {
-      command_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * 响应命令
-     * </pre>
-     *
-     * <code>.org.huangyr.project.vulcan.proto.Command command = 3;</code>
-     */
-    public org.huangyr.project.vulcan.proto.Command getCommand() {
-      @SuppressWarnings("deprecation")
-      org.huangyr.project.vulcan.proto.Command result = org.huangyr.project.vulcan.proto.Command.valueOf(command_);
-      return result == null ? org.huangyr.project.vulcan.proto.Command.UNRECOGNIZED : result;
-    }
-    /**
-     * <pre>
-     * 响应命令
-     * </pre>
-     *
-     * <code>.org.huangyr.project.vulcan.proto.Command command = 3;</code>
-     */
-    public Builder setCommand(org.huangyr.project.vulcan.proto.Command value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      
-      command_ = value.getNumber();
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * 响应命令
-     * </pre>
-     *
-     * <code>.org.huangyr.project.vulcan.proto.Command command = 3;</code>
-     */
-    public Builder clearCommand() {
-      
-      command_ = 0;
-      onChanged();
-      return this;
-    }
-
-    private long sendHeartTime_ ;
-    /**
-     * <pre>
-     * 发送心跳时间
-     * </pre>
-     *
-     * <code>uint64 sendHeartTime = 4;</code>
-     */
-    public long getSendHeartTime() {
-      return sendHeartTime_;
-    }
-    /**
-     * <pre>
-     * 发送心跳时间
-     * </pre>
-     *
-     * <code>uint64 sendHeartTime = 4;</code>
-     */
-    public Builder setSendHeartTime(long value) {
-      
-      sendHeartTime_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * 发送心跳时间
-     * </pre>
-     *
-     * <code>uint64 sendHeartTime = 4;</code>
-     */
-    public Builder clearSendHeartTime() {
-      
-      sendHeartTime_ = 0L;
-      onChanged();
-      return this;
-    }
-
-    private long receiveHeartTime_ ;
-    /**
-     * <pre>
-     * 收到心跳时间
-     * </pre>
-     *
-     * <code>uint64 receiveHeartTime = 5;</code>
-     */
-    public long getReceiveHeartTime() {
-      return receiveHeartTime_;
-    }
-    /**
-     * <pre>
-     * 收到心跳时间
-     * </pre>
-     *
-     * <code>uint64 receiveHeartTime = 5;</code>
-     */
-    public Builder setReceiveHeartTime(long value) {
-      
-      receiveHeartTime_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * 收到心跳时间
-     * </pre>
-     *
-     * <code>uint64 receiveHeartTime = 5;</code>
-     */
-    public Builder clearReceiveHeartTime() {
-      
-      receiveHeartTime_ = 0L;
-      onChanged();
-      return this;
-    }
-
     private long responseHeartTime_ ;
     /**
      * <pre>
-     * 心跳响应时间
+     * 消息发送时间
      * </pre>
      *
-     * <code>uint64 responseHeartTime = 6;</code>
+     * <code>uint64 responseHeartTime = 4;</code>
      */
     public long getResponseHeartTime() {
       return responseHeartTime_;
     }
     /**
      * <pre>
-     * 心跳响应时间
+     * 消息发送时间
      * </pre>
      *
-     * <code>uint64 responseHeartTime = 6;</code>
+     * <code>uint64 responseHeartTime = 4;</code>
      */
     public Builder setResponseHeartTime(long value) {
       
@@ -923,10 +773,10 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * 心跳响应时间
+     * 消息发送时间
      * </pre>
      *
-     * <code>uint64 responseHeartTime = 6;</code>
+     * <code>uint64 responseHeartTime = 4;</code>
      */
     public Builder clearResponseHeartTime() {
       

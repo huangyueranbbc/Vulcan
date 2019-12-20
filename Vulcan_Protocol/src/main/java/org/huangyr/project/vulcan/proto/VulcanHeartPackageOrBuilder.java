@@ -51,4 +51,29 @@ public interface VulcanHeartPackageOrBuilder extends
    * <code>uint64 heartTime = 3;</code>
    */
   long getHeartTime();
+
+  /**
+   * <pre>
+   * 上报Runner自身节点信息
+   * </pre>
+   *
+   * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 4;</code>
+   */
+  boolean hasRunnerNodeInfo();
+  /**
+   * <pre>
+   * 上报Runner自身节点信息
+   * </pre>
+   *
+   * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 4;</code>
+   */
+  org.huangyr.project.vulcan.proto.RunnerNodeInfo getRunnerNodeInfo();
+  /**
+   * <pre>
+   * 上报Runner自身节点信息
+   * </pre>
+   *
+   * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 4;</code>
+   */
+  org.huangyr.project.vulcan.proto.RunnerNodeInfoOrBuilder getRunnerNodeInfoOrBuilder();
 }

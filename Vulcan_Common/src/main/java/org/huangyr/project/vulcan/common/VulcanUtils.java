@@ -26,13 +26,4 @@ public class VulcanUtils {
         }
     }
 
-
-    /**
-     * 获取当前运行机器上当前时间
-     */
-    public static long now() {
-        return System.currentTimeMillis();
-    }
-
-
 }

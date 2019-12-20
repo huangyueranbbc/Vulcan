@@ -39,15 +39,16 @@ public final class VulcanTransferProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\031VulcanTransferProto.proto\022 org.huangyr" +
-      ".project.vulcan.proto\"D\n\022VulcanHeartPack" +
-      "age\022\017\n\007message\030\001 \001(\t\022\n\n\002ip\030\002 \001(\t\022\021\n\thear" +
-      "tTime\030\003 \001(\004\"\303\001\n\024ServerCommandPackage\022\022\n\n" +
-      "resultCode\030\001 \001(\005\022\017\n\007message\030\002 \001(\t\022:\n\007com" +
-      "mand\030\003 \001(\0162).org.huangyr.project.vulcan." +
-      "proto.Command\022\025\n\rsendHeartTime\030\004 \001(\004\022\030\n\020" +
-      "receiveHeartTime\030\005 \001(\004\022\031\n\021responseHeartT" +
-      "ime\030\006 \001(\004\"\020\n\016RunnerNodeInfo*\"\n\007Command\022\n" +
-      "\n\006NORMAL\020\000\022\013\n\007UPGRADE\020\001B9\n org.huangyr.p" +
+      ".project.vulcan.proto\"\216\001\n\022VulcanHeartPac" +
+      "kage\022\017\n\007message\030\001 \001(\t\022\n\n\002ip\030\002 \001(\t\022\021\n\thea" +
+      "rtTime\030\003 \001(\004\022H\n\016runnerNodeInfo\030\004 \001(\01320.o" +
+      "rg.huangyr.project.vulcan.proto.RunnerNo" +
+      "deInfo\"\222\001\n\024ServerCommandPackage\022\022\n\nresul" +
+      "tCode\030\001 \001(\005\022:\n\007command\030\002 \001(\0162).org.huang" +
+      "yr.project.vulcan.proto.Command\022\017\n\007messa" +
+      "ge\030\003 \001(\t\022\031\n\021responseHeartTime\030\004 \001(\004\"\020\n\016R" +
+      "unnerNodeInfo*0\n\007Command\022\n\n\006NORMAL\020\000\022\014\n\010" +
+      "SHUTDOWN\020\001\022\013\n\007UPGRADE\020\002B9\n org.huangyr.p" +
       "roject.vulcan.protoB\023VulcanTransferProto" +
       "P\001b\006proto3"
     };
@@ -68,13 +69,13 @@ public final class VulcanTransferProto {
     internal_static_org_huangyr_project_vulcan_proto_VulcanHeartPackage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_org_huangyr_project_vulcan_proto_VulcanHeartPackage_descriptor,
-        new java.lang.String[] { "Message", "Ip", "HeartTime", });
+        new java.lang.String[] { "Message", "Ip", "HeartTime", "RunnerNodeInfo", });
     internal_static_org_huangyr_project_vulcan_proto_ServerCommandPackage_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_org_huangyr_project_vulcan_proto_ServerCommandPackage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_org_huangyr_project_vulcan_proto_ServerCommandPackage_descriptor,
-        new java.lang.String[] { "ResultCode", "Message", "Command", "SendHeartTime", "ReceiveHeartTime", "ResponseHeartTime", });
+        new java.lang.String[] { "ResultCode", "Command", "Message", "ResponseHeartTime", });
     internal_static_org_huangyr_project_vulcan_proto_RunnerNodeInfo_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_org_huangyr_project_vulcan_proto_RunnerNodeInfo_fieldAccessorTable = new

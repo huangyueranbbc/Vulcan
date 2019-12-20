@@ -10,22 +10,22 @@ message VulcanHeartPackage {
   string message = 1; // 心跳消息
   string ip = 2; // 发送心跳的机器IP
   uint64 heartTime = 3; // 发送心跳时间
+  RunnerNodeInfo runnerNodeInfo = 4; // 上报Runner自身节点信息
 }
 
 // 心跳结果报
 message ServerCommandPackage{
-  int32 resultCode = 1; // 心跳响应结果
-  string message = 2; // 心跳结果消息
-  Command command = 3; // 响应命令
-  uint64 sendHeartTime = 4; // 发送心跳时间
-  uint64 receiveHeartTime = 5; // 收到心跳时间
-  uint64 responseHeartTime = 6; // 心跳响应时间
+  int32 resultCode = 1; // 响应结果 / 消息标识
+  Command command = 2; // Server指令
+  string message = 3; // Server指令详情
+  uint64 responseHeartTime = 4; // 消息发送时间
 }
 
 // 心跳结果命令
 enum Command {
-    NORMAL = 0;
-    UPGRADE = 1;
+    NORMAL = 0; // 心跳包 更新心跳和租约信息
+    SHUTDOWN = 1; // 关闭Runner
+    UPGRADE = 2; // 更新Runner
 }
 
 // runner节点状态信息

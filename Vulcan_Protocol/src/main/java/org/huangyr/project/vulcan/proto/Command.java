@@ -13,24 +13,56 @@ package org.huangyr.project.vulcan.proto;
 public enum Command
     implements com.google.protobuf.ProtocolMessageEnum {
   /**
+   * <pre>
+   * 心跳包 更新心跳和租约信息
+   * </pre>
+   *
    * <code>NORMAL = 0;</code>
    */
   NORMAL(0),
   /**
-   * <code>UPGRADE = 1;</code>
+   * <pre>
+   * 关闭Runner
+   * </pre>
+   *
+   * <code>SHUTDOWN = 1;</code>
    */
-  UPGRADE(1),
+  SHUTDOWN(1),
+  /**
+   * <pre>
+   * 更新Runner
+   * </pre>
+   *
+   * <code>UPGRADE = 2;</code>
+   */
+  UPGRADE(2),
   UNRECOGNIZED(-1),
   ;
 
   /**
+   * <pre>
+   * 心跳包 更新心跳和租约信息
+   * </pre>
+   *
    * <code>NORMAL = 0;</code>
    */
   public static final int NORMAL_VALUE = 0;
   /**
-   * <code>UPGRADE = 1;</code>
+   * <pre>
+   * 关闭Runner
+   * </pre>
+   *
+   * <code>SHUTDOWN = 1;</code>
    */
-  public static final int UPGRADE_VALUE = 1;
+  public static final int SHUTDOWN_VALUE = 1;
+  /**
+   * <pre>
+   * 更新Runner
+   * </pre>
+   *
+   * <code>UPGRADE = 2;</code>
+   */
+  public static final int UPGRADE_VALUE = 2;
 
 
   public final int getNumber() {
@@ -52,7 +84,8 @@ public enum Command
   public static Command forNumber(int value) {
     switch (value) {
       case 0: return NORMAL;
-      case 1: return UPGRADE;
+      case 1: return SHUTDOWN;
+      case 2: return UPGRADE;
       default: return null;
     }
   }

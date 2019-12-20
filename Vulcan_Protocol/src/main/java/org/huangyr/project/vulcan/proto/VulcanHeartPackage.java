@@ -66,6 +66,19 @@ private static final long serialVersionUID = 0L;
             heartTime_ = input.readUInt64();
             break;
           }
+          case 34: {
+            org.huangyr.project.vulcan.proto.RunnerNodeInfo.Builder subBuilder = null;
+            if (runnerNodeInfo_ != null) {
+              subBuilder = runnerNodeInfo_.toBuilder();
+            }
+            runnerNodeInfo_ = input.readMessage(org.huangyr.project.vulcan.proto.RunnerNodeInfo.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(runnerNodeInfo_);
+              runnerNodeInfo_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
           default: {
             if (!parseUnknownFieldProto3(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -195,6 +208,39 @@ private static final long serialVersionUID = 0L;
     return heartTime_;
   }
 
+  public static final int RUNNERNODEINFO_FIELD_NUMBER = 4;
+  private org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo_;
+  /**
+   * <pre>
+   * 上报Runner自身节点信息
+   * </pre>
+   *
+   * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 4;</code>
+   */
+  public boolean hasRunnerNodeInfo() {
+    return runnerNodeInfo_ != null;
+  }
+  /**
+   * <pre>
+   * 上报Runner自身节点信息
+   * </pre>
+   *
+   * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 4;</code>
+   */
+  public org.huangyr.project.vulcan.proto.RunnerNodeInfo getRunnerNodeInfo() {
+    return runnerNodeInfo_ == null ? org.huangyr.project.vulcan.proto.RunnerNodeInfo.getDefaultInstance() : runnerNodeInfo_;
+  }
+  /**
+   * <pre>
+   * 上报Runner自身节点信息
+   * </pre>
+   *
+   * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 4;</code>
+   */
+  public org.huangyr.project.vulcan.proto.RunnerNodeInfoOrBuilder getRunnerNodeInfoOrBuilder() {
+    return getRunnerNodeInfo();
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -218,6 +264,9 @@ private static final long serialVersionUID = 0L;
     if (heartTime_ != 0L) {
       output.writeUInt64(3, heartTime_);
     }
+    if (runnerNodeInfo_ != null) {
+      output.writeMessage(4, getRunnerNodeInfo());
+    }
     unknownFields.writeTo(output);
   }
 
@@ -236,6 +285,10 @@ private static final long serialVersionUID = 0L;
     if (heartTime_ != 0L) {
       size += com.google.protobuf.CodedOutputStream
         .computeUInt64Size(3, heartTime_);
+    }
+    if (runnerNodeInfo_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(4, getRunnerNodeInfo());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -259,6 +312,11 @@ private static final long serialVersionUID = 0L;
         .equals(other.getIp());
     result = result && (getHeartTime()
         == other.getHeartTime());
+    result = result && (hasRunnerNodeInfo() == other.hasRunnerNodeInfo());
+    if (hasRunnerNodeInfo()) {
+      result = result && getRunnerNodeInfo()
+          .equals(other.getRunnerNodeInfo());
+    }
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -277,6 +335,10 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + HEARTTIME_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         getHeartTime());
+    if (hasRunnerNodeInfo()) {
+      hash = (37 * hash) + RUNNERNODEINFO_FIELD_NUMBER;
+      hash = (53 * hash) + getRunnerNodeInfo().hashCode();
+    }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -420,6 +482,12 @@ private static final long serialVersionUID = 0L;
 
       heartTime_ = 0L;
 
+      if (runnerNodeInfoBuilder_ == null) {
+        runnerNodeInfo_ = null;
+      } else {
+        runnerNodeInfo_ = null;
+        runnerNodeInfoBuilder_ = null;
+      }
       return this;
     }
 
@@ -449,6 +517,11 @@ private static final long serialVersionUID = 0L;
       result.message_ = message_;
       result.ip_ = ip_;
       result.heartTime_ = heartTime_;
+      if (runnerNodeInfoBuilder_ == null) {
+        result.runnerNodeInfo_ = runnerNodeInfo_;
+      } else {
+        result.runnerNodeInfo_ = runnerNodeInfoBuilder_.build();
+      }
       onBuilt();
       return result;
     }
@@ -507,6 +580,9 @@ private static final long serialVersionUID = 0L;
       }
       if (other.getHeartTime() != 0L) {
         setHeartTime(other.getHeartTime());
+      }
+      if (other.hasRunnerNodeInfo()) {
+        mergeRunnerNodeInfo(other.getRunnerNodeInfo());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -751,6 +827,159 @@ private static final long serialVersionUID = 0L;
       heartTime_ = 0L;
       onChanged();
       return this;
+    }
+
+    private org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo_ = null;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        org.huangyr.project.vulcan.proto.RunnerNodeInfo, org.huangyr.project.vulcan.proto.RunnerNodeInfo.Builder, org.huangyr.project.vulcan.proto.RunnerNodeInfoOrBuilder> runnerNodeInfoBuilder_;
+    /**
+     * <pre>
+     * 上报Runner自身节点信息
+     * </pre>
+     *
+     * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 4;</code>
+     */
+    public boolean hasRunnerNodeInfo() {
+      return runnerNodeInfoBuilder_ != null || runnerNodeInfo_ != null;
+    }
+    /**
+     * <pre>
+     * 上报Runner自身节点信息
+     * </pre>
+     *
+     * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 4;</code>
+     */
+    public org.huangyr.project.vulcan.proto.RunnerNodeInfo getRunnerNodeInfo() {
+      if (runnerNodeInfoBuilder_ == null) {
+        return runnerNodeInfo_ == null ? org.huangyr.project.vulcan.proto.RunnerNodeInfo.getDefaultInstance() : runnerNodeInfo_;
+      } else {
+        return runnerNodeInfoBuilder_.getMessage();
+      }
+    }
+    /**
+     * <pre>
+     * 上报Runner自身节点信息
+     * </pre>
+     *
+     * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 4;</code>
+     */
+    public Builder setRunnerNodeInfo(org.huangyr.project.vulcan.proto.RunnerNodeInfo value) {
+      if (runnerNodeInfoBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        runnerNodeInfo_ = value;
+        onChanged();
+      } else {
+        runnerNodeInfoBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * 上报Runner自身节点信息
+     * </pre>
+     *
+     * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 4;</code>
+     */
+    public Builder setRunnerNodeInfo(
+        org.huangyr.project.vulcan.proto.RunnerNodeInfo.Builder builderForValue) {
+      if (runnerNodeInfoBuilder_ == null) {
+        runnerNodeInfo_ = builderForValue.build();
+        onChanged();
+      } else {
+        runnerNodeInfoBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * 上报Runner自身节点信息
+     * </pre>
+     *
+     * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 4;</code>
+     */
+    public Builder mergeRunnerNodeInfo(org.huangyr.project.vulcan.proto.RunnerNodeInfo value) {
+      if (runnerNodeInfoBuilder_ == null) {
+        if (runnerNodeInfo_ != null) {
+          runnerNodeInfo_ =
+            org.huangyr.project.vulcan.proto.RunnerNodeInfo.newBuilder(runnerNodeInfo_).mergeFrom(value).buildPartial();
+        } else {
+          runnerNodeInfo_ = value;
+        }
+        onChanged();
+      } else {
+        runnerNodeInfoBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * 上报Runner自身节点信息
+     * </pre>
+     *
+     * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 4;</code>
+     */
+    public Builder clearRunnerNodeInfo() {
+      if (runnerNodeInfoBuilder_ == null) {
+        runnerNodeInfo_ = null;
+        onChanged();
+      } else {
+        runnerNodeInfo_ = null;
+        runnerNodeInfoBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * 上报Runner自身节点信息
+     * </pre>
+     *
+     * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 4;</code>
+     */
+    public org.huangyr.project.vulcan.proto.RunnerNodeInfo.Builder getRunnerNodeInfoBuilder() {
+      
+      onChanged();
+      return getRunnerNodeInfoFieldBuilder().getBuilder();
+    }
+    /**
+     * <pre>
+     * 上报Runner自身节点信息
+     * </pre>
+     *
+     * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 4;</code>
+     */
+    public org.huangyr.project.vulcan.proto.RunnerNodeInfoOrBuilder getRunnerNodeInfoOrBuilder() {
+      if (runnerNodeInfoBuilder_ != null) {
+        return runnerNodeInfoBuilder_.getMessageOrBuilder();
+      } else {
+        return runnerNodeInfo_ == null ?
+            org.huangyr.project.vulcan.proto.RunnerNodeInfo.getDefaultInstance() : runnerNodeInfo_;
+      }
+    }
+    /**
+     * <pre>
+     * 上报Runner自身节点信息
+     * </pre>
+     *
+     * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 4;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        org.huangyr.project.vulcan.proto.RunnerNodeInfo, org.huangyr.project.vulcan.proto.RunnerNodeInfo.Builder, org.huangyr.project.vulcan.proto.RunnerNodeInfoOrBuilder> 
+        getRunnerNodeInfoFieldBuilder() {
+      if (runnerNodeInfoBuilder_ == null) {
+        runnerNodeInfoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            org.huangyr.project.vulcan.proto.RunnerNodeInfo, org.huangyr.project.vulcan.proto.RunnerNodeInfo.Builder, org.huangyr.project.vulcan.proto.RunnerNodeInfoOrBuilder>(
+                getRunnerNodeInfo(),
+                getParentForChildren(),
+                isClean());
+        runnerNodeInfo_ = null;
+      }
+      return runnerNodeInfoBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

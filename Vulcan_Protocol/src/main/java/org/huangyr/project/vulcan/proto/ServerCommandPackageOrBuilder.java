@@ -9,7 +9,7 @@ public interface ServerCommandPackageOrBuilder extends
 
   /**
    * <pre>
-   * 心跳响应结果
+   * 响应结果 / 消息标识
    * </pre>
    *
    * <code>int32 resultCode = 1;</code>
@@ -18,63 +18,45 @@ public interface ServerCommandPackageOrBuilder extends
 
   /**
    * <pre>
-   * 心跳结果消息
+   * Server指令
    * </pre>
    *
-   * <code>string message = 2;</code>
+   * <code>.org.huangyr.project.vulcan.proto.Command command = 2;</code>
+   */
+  int getCommandValue();
+  /**
+   * <pre>
+   * Server指令
+   * </pre>
+   *
+   * <code>.org.huangyr.project.vulcan.proto.Command command = 2;</code>
+   */
+  org.huangyr.project.vulcan.proto.Command getCommand();
+
+  /**
+   * <pre>
+   * Server指令详情
+   * </pre>
+   *
+   * <code>string message = 3;</code>
    */
   java.lang.String getMessage();
   /**
    * <pre>
-   * 心跳结果消息
+   * Server指令详情
    * </pre>
    *
-   * <code>string message = 2;</code>
+   * <code>string message = 3;</code>
    */
   com.google.protobuf.ByteString
       getMessageBytes();
 
   /**
    * <pre>
-   * 响应命令
+   * 消息发送时间
    * </pre>
    *
-   * <code>.org.huangyr.project.vulcan.proto.Command command = 3;</code>
-   */
-  int getCommandValue();
-  /**
-   * <pre>
-   * 响应命令
-   * </pre>
-   *
-   * <code>.org.huangyr.project.vulcan.proto.Command command = 3;</code>
-   */
-  org.huangyr.project.vulcan.proto.Command getCommand();
-
-  /**
-   * <pre>
-   * 发送心跳时间
-   * </pre>
-   *
-   * <code>uint64 sendHeartTime = 4;</code>
-   */
-  long getSendHeartTime();
-
-  /**
-   * <pre>
-   * 收到心跳时间
-   * </pre>
-   *
-   * <code>uint64 receiveHeartTime = 5;</code>
-   */
-  long getReceiveHeartTime();
-
-  /**
-   * <pre>
-   * 心跳响应时间
-   * </pre>
-   *
-   * <code>uint64 responseHeartTime = 6;</code>
+   * <code>uint64 responseHeartTime = 4;</code>
    */
   long getResponseHeartTime();
 }
