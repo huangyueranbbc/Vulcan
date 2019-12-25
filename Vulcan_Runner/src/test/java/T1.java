@@ -2,16 +2,18 @@ import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import org.apache.commons.lang3.time.FastDateFormat;
 import org.apache.log4j.PropertyConfigurator;
-import org.huangyr.project.vulcan.common.DateUtils;
-import org.huangyr.project.vulcan.common.VulcanUtils;
-import org.huangyr.project.vulcan.net.client.HeartSocketClient;
-import org.huangyr.project.vulcan.proto.VulcanHeartPackage;
+import org.huangyr.project.vulcan.runner.server.common.DateUtils;
+import org.huangyr.project.vulcan.runner.server.common.VulcanUtils;
+import org.huangyr.project.vulcan.runner.server.net.client.HeartSocketClient;
+import org.huangyr.project.vulcan.runner.server.proto.VulcanHeartPackage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Date;
 import java.util.Properties;
+
+import static org.huangyr.project.vulcan.runner.server.common.Constants.*;
 
 /*******************************************************************************
  * 版权信息：安信证券股份有限公司
@@ -46,7 +48,7 @@ public class T1 {
     public static void main(String[] args) {
 
         // RunnerSocket服务客户端 接收并处理Server下发的指令
-        HeartSocketClient bootstrap = new HeartSocketClient(8888, "127.0.0.1", 1, false);
+        HeartSocketClient bootstrap = new HeartSocketClient(SERVER_IP, SERVER_PORT, 1, BASE_SLEEP_TIME, MAX_RETRIES, MAX_SLEEP_TIME, false);
         bootstrap.start();
 
         while (true) {
