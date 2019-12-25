@@ -2,9 +2,9 @@ import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import org.apache.commons.lang3.time.FastDateFormat;
 import org.apache.log4j.PropertyConfigurator;
-import org.huangyr.project.vulcan.runner.server.common.DateUtils;
-import org.huangyr.project.vulcan.runner.server.common.VulcanUtils;
-import org.huangyr.project.vulcan.runner.server.net.client.HeartSocketClient;
+import org.huangyr.project.vulcan.common.VulcanUtils;
+import org.huangyr.project.vulcan.common.DateUtils;
+import org.huangyr.project.vulcan.runner.net.client.HeartSocketClient;
 import org.huangyr.project.vulcan.runner.server.proto.VulcanHeartPackage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +13,8 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.Properties;
 
-import static org.huangyr.project.vulcan.runner.server.common.Constants.*;
+import static org.huangyr.project.vulcan.runner.common.Constants.*;
+
 
 /*******************************************************************************
  * 版权信息：安信证券股份有限公司
@@ -74,8 +75,8 @@ public class T1 {
 
 //    private static void test1() {
 //        VulcanHeartPackage.Builder heartBuilder = VulcanHeartPackage.newBuilder();
-//        heartBuilder.setIp(VulcanUtils.getHostname());
-//        heartBuilder.setHeartTime(VulcanUtils.now());
+//        heartBuilder.setIp(org.huangyr.project.common.VulcanUtils.getHostname());
+//        heartBuilder.setHeartTime(org.huangyr.project.common.VulcanUtils.now());
 //        heartBuilder.setMessage("我发送心跳啦!");
 //        VulcanHeartPackage heartPackage = heartBuilder.build();
 //
@@ -119,10 +120,10 @@ public class T1 {
 //            log.error("send tcp message error. ip:{} port:{} message:{}", "127.0.0.1", 8888, "aaa", e);
 //        } finally {
 ////            // 4.释放资源
-////            IOUtils.closeStream(byteArrayOutputStream);
-////            IOUtils.closeStream(input);
-////            IOUtils.closeStream(dos);
-////            IOUtils.closeStream(socket);
+////            org.huangyr.project.common.IOUtils.closeStream(byteArrayOutputStream);
+////            org.huangyr.project.common.IOUtils.closeStream(input);
+////            org.huangyr.project.common.IOUtils.closeStream(dos);
+////            org.huangyr.project.common.IOUtils.closeStream(socket);
 //        }
 //    }
     }

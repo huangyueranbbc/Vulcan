@@ -1,4 +1,4 @@
-import org.huangyr.project.vulcan.runner.server.dag.DAG;
+import org.huangyr.project.vulcan.server.dag.DAG;
 import org.junit.Test;
 
 public class DAGTest {
