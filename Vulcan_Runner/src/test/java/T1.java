@@ -4,8 +4,8 @@ import org.apache.commons.lang3.time.FastDateFormat;
 import org.apache.log4j.PropertyConfigurator;
 import org.huangyr.project.vulcan.common.VulcanUtils;
 import org.huangyr.project.vulcan.common.DateUtils;
+import org.huangyr.project.vulcan.proto.VulcanHeartPackage;
 import org.huangyr.project.vulcan.runner.net.client.HeartSocketClient;
-import org.huangyr.project.vulcan.runner.server.proto.VulcanHeartPackage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
