@@ -12,11 +12,9 @@ import static io.netty.buffer.Unpooled.copiedBuffer;
 import static io.netty.handler.codec.http.HttpHeaderNames.*;
 
 /*******************************************************************************
- * 版权信息：安信证券股份有限公司
- * Copyright: Copyright (c) 2019安信证券股份有限公司,Inc.All Rights Reserved.
  *
  * @date 2019-12-16 10:55 AM
- * @author: <a href=mailto:@essence.com.cn>黄跃然</a>
+ * @author: <a href=mailto:huangyueran>黄跃然</a>
  * @Description: 请求处理
  ******************************************************************************/
 public class HttpServerHandler extends SimpleChannelInboundHandler<HttpObject> {

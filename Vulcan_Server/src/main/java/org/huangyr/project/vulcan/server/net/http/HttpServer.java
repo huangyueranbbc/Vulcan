@@ -21,11 +21,9 @@ import java.nio.channels.spi.SelectorProvider;
 import java.util.concurrent.ThreadFactory;
 
 /*******************************************************************************
- * 版权信息：安信证券股份有限公司
- * Copyright: Copyright (c) 2019安信证券股份有限公司,Inc.All Rights Reserved.
  *
  * @date 2019-12-16 10:55 AM
- * @author: <a href=mailto:@essence.com.cn>黄跃然</a>
+ * @author: <a href=mailto:huangyueran>黄跃然</a>
  * @Description: netty服务 http通信服务 阻塞式，所以启动需要另开线程
  ******************************************************************************/
 public class HttpServer extends Thread {

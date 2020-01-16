@@ -13,11 +13,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /*******************************************************************************
- * 版权信息：安信证券股份有限公司
- * Copyright: Copyright (c) 2019安信证券股份有限公司,Inc.All Rights Reserved.
  *
  * @date 2019-12-18 2:45 PM 
- * @author: <a href=mailto:@essence.com.cn>黄跃然</a>
+ * @author: <a href=mailto:huangyueran>黄跃然</a>
  * @Description: 心跳服务
  * {@link HeartService#heartSocketClient 建立和Server的双通道长连接,用于心跳和接收Server发送的指令}
  * {@link HeartService#runner runner通过该类发送心跳}

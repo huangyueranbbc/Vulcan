@@ -6,11 +6,9 @@ import org.slf4j.LoggerFactory;
 import java.util.Random;
 
 /*******************************************************************************
- * 版权信息：安信证券股份有限公司
- * Copyright: Copyright (c) 2019安信证券股份有限公司,Inc.All Rights Reserved.
  *
  * @date 2019-12-18 2:45 PM
- * @author: <a href=mailto:@essence.com.cn>黄跃然</a>
+ * @author: <a href=mailto:huangyueran>黄跃然</a>
  * @Description: 重试策略，可重试一定次数，并增加重试之间的睡眠时间
  *
  * {@link RetryPolicy 重试策略接口}

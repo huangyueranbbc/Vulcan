@@ -18,14 +18,12 @@ import java.util.Properties;
 import static org.huangyr.project.vulcan.runner.common.ThreadPool.*;
 
 /*******************************************************************************
- * 版权信息：安信证券股份有限公司
- * Copyright: Copyright (c) 2019安信证券股份有限公司,Inc.All Rights Reserved.
  *
  * @date 2019-12-18 1:47 PM 
- * @author: <a href=mailto:@essence.com.cn>黄跃然</a>
+ * @author: <a href=mailto:huangyueran>黄跃然</a>
  * @Description: Runner服务
  * Runner服务启动入口{@link Runner#main}
- * Runner服务停止{@link Runner#shutdown()}}
+ * Runner服务停止{@link Runner#shutdown()}
  * Runner服务挂起{@link Runner#join()}
  * Runner服务是否运行信号量{@link Runner#shouldRun}
  * 初始化Runner服务，初始化并启动心跳检测线程和租约管理线程,建立和Server的通信连接{@link Runner#initRunner()}

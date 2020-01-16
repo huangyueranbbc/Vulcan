@@ -10,11 +10,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /*******************************************************************************
- * 版权信息：安信证券股份有限公司
- * Copyright: Copyright (c) 2019安信证券股份有限公司,Inc.All Rights Reserved.
  *
  * @date 2019-06-06 16:05
- * @author: <a href=mailto:@essence.com.cn>黄跃然</a>
+ * @author: <a href=mailto:huangyueran>黄跃然</a>
  * @Description: DataCenterService版本信息
  ******************************************************************************/
 public class VulcanVersionInfo {

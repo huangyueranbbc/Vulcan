@@ -1,11 +1,9 @@
 package org.huangyr.project.vulcan.runner.common;
 
 /*******************************************************************************
- * 版权信息：安信证券股份有限公司
- * Copyright: Copyright (c) 2019安信证券股份有限公司,Inc.All Rights Reserved.
  *
  * @date 2019-12-18 12:12 PM 
- * @author: <a href=mailto:@essence.com.cn>黄跃然</a>
+ * @author: <a href=mailto:huangyueran>黄跃然</a>
  * @Description: Runner启动指令
  ******************************************************************************/
 public enum StartupOption {

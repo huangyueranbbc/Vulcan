@@ -17,17 +17,15 @@ import java.util.Date;
 import java.util.Properties;
 
 /*******************************************************************************
- * 版权信息：安信证券股份有限公司
- * Copyright: Copyright (c) 2019安信证券股份有限公司,Inc.All Rights Reserved.
  *
  * @date 2019-12-16 10:57 AM 
- * @author: <a href=mailto:@essence.com.cn>黄跃然</a>
+ * @author: <a href=mailto:huangyueran>黄跃然</a>
  * @Description: Server服务端
  * Server服务启动入口{@link Server#main}
  * Server服务停止{@link Server#shutdown()}}
  * Server服务挂起{@link Server#join()}}
- * Server服务是否运行信号量{@link Server#shouldRun}}
- * 初始化Server服务，启动Server线程，启动Socket心跳和http服务{@link Server#initServer()}}
+ * Server服务是否运行信号量{@link Server#shouldRun}
+ * 初始化Server服务，启动Server线程，启动Socket心跳和http服务{@link Server#initServer()}
  * @see HttpServer http服务,主要用于web通信{@link Server#httpServer}
  * @see HeartServer socket服务,主要用于处理心跳，汇总runner运行状况,以及根据连接下发指令给Runner{@link Server#heartServer}
  * @see DAG 通过DAG有向无环图进行任务扫描算法
@@ -75,7 +73,6 @@ public class Server {
     private Server(boolean shouldRun) {
         this.shouldRun = shouldRun;
         initServer(); // 初始化Server
-        new Server();
     }
 
     private void join() {
@@ -119,6 +116,8 @@ public class Server {
             // 心跳服务
             heartServer = new HeartServer(8888, 1, 1, false);
             heartServer.start();
+
+            // TODO JOB扫描任务
 
         } catch (Exception e) {
             log.error("initNameNode is error");

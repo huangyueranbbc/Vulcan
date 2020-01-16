@@ -10,11 +10,9 @@ import org.huangyr.project.vulcan.runner.net.common.RetryPolicy;
 import java.util.concurrent.TimeUnit;
 
 /*******************************************************************************
- * 版权信息：安信证券股份有限公司
- * Copyright: Copyright (c) 2019安信证券股份有限公司,Inc.All Rights Reserved.
  *
  * @date 2019-12-18 2:45 PM
- * @author: <a href=mailto:@essence.com.cn>黄跃然</a>
+ * @author: <a href=mailto:huangyueran>黄跃然</a>
  * @Description: 重连处理器 当检测到channel断开，会启动重连策略进行重连
  *
  * {@link RetryPolicy 重试策略接口}
