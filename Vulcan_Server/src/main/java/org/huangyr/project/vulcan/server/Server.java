@@ -1,20 +1,14 @@
 package org.huangyr.project.vulcan.server;
 
-import org.apache.commons.lang3.time.FastDateFormat;
-import org.apache.log4j.PropertyConfigurator;
+import lombok.extern.slf4j.Slf4j;
+import org.huangyr.project.vulcan.common.ConfigUtils;
 import org.huangyr.project.vulcan.common.Global;
+import org.huangyr.project.vulcan.runner.Runner;
 import org.huangyr.project.vulcan.server.common.Constants;
 import org.huangyr.project.vulcan.server.common.StartupOption;
 import org.huangyr.project.vulcan.server.dag.DAG;
 import org.huangyr.project.vulcan.server.net.http.HttpServer;
 import org.huangyr.project.vulcan.server.net.tcp.HeartServer;
-import org.huangyr.project.vulcan.runner.Runner;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.io.IOException;
-import java.util.Date;
-import java.util.Properties;
 
 /*******************************************************************************
  *
@@ -34,29 +28,15 @@ import java.util.Properties;
  * 公用全局变量放到{@link Global}
  * 私有全局变量放到{@link Constants}
  *******************vulcan***********************************************************/
+@Slf4j
 public class Server {
 
-    /**
-     * 静态初始化日志
+    /*
+     * 日志初始化
      */
     static {
-        Properties properties = new Properties();
-        try {
-            properties.load(Server.class.getClassLoader().getResourceAsStream("log4j.properties"));
-            String time = FastDateFormat.getInstance("yyyy-MM-dd-HH").format(new Date());
-            String logDir = System.getenv("VULCAN_LOG_DIR") + "/vulcan/server/";
-            properties.setProperty("log4j.appender.FILE_INFO.File", logDir + "Vulcan_Server_INFO_" + time + ".LOG");
-            properties.setProperty("log4j.appender.FILE_WARN.File", logDir + "Vulcan_Server_WARN_" + time + ".LOG");
-            properties.setProperty("log4j.appender.FILE_ERROR.File", logDir + "Vulcan_Server_ERROR_" + time + ".LOG");
-            properties.setProperty("log4j.appender.FILE_DEBUG.File", logDir + "Vulcan_Server_DEBUG_" + time + ".LOG");
-        } catch (IOException e) {
-            System.out.println("load log4j.properties exception." + e.fillInStackTrace());
-            System.exit(-1);
-        }
-        PropertyConfigurator.configure(properties);
+        ConfigUtils.initLog4j2Config();
     }
-
-    private static Logger log = LoggerFactory.getLogger(Server.class);
 
     private static HttpServer httpServer;
 

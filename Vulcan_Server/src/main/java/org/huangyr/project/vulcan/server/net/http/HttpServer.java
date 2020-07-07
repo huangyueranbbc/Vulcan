@@ -13,6 +13,7 @@ import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpRequestDecoder;
 import io.netty.handler.codec.http.HttpResponseEncoder;
 import io.netty.util.concurrent.DefaultThreadFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.huangyr.project.vulcan.server.net.http.handler.HttpServerHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,8 +27,9 @@ import java.util.concurrent.ThreadFactory;
  * @author: <a href=mailto:huangyueran>黄跃然</a>
  * @Description: netty服务 http通信服务 阻塞式，所以启动需要另开线程
  ******************************************************************************/
+@Slf4j
 public class HttpServer extends Thread {
-    private static Logger log = LoggerFactory.getLogger(HttpServer.class);
+
     private int port;
     private int bossGroupThreadNum = 1;
     private int workGroupThreadNum = 0;

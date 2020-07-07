@@ -1,7 +1,6 @@
 package org.huangyr.project.vulcan.common;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -15,9 +14,8 @@ import java.util.regex.Pattern;
  * @author: <a href=mailto:huangyueran>黄跃然</a>
  * @Description: DataCenterService版本信息
  ******************************************************************************/
+@Slf4j
 public class VulcanVersionInfo {
-
-    private static final Logger logger = LoggerFactory.getLogger(VulcanVersionInfo.class);
 
     private static final String VERSION = "version:";
     private static final String DATATIME = "datetime:";
@@ -50,7 +48,7 @@ public class VulcanVersionInfo {
             }
         } catch (Exception e) {
             // don't need print exception
-            logger.warn("FAILED TO GET VERSION INFO.");
+            log.warn("FAILED TO GET VERSION INFO.");
         }
     }
 

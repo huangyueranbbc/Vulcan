@@ -1,5 +1,6 @@
 package org.huangyr.project.vulcan.common;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,9 +14,8 @@ import java.net.Socket;
  * @author: <a href=mailto:huangyueran>黄跃然</a>
  * @Description: Socket消息工具类
  ******************************************************************************/
+@Slf4j
 public class SocketUtils {
-
-    private static Logger log = LoggerFactory.getLogger(SocketUtils.class);
 
     /**
      * 发送socket消息

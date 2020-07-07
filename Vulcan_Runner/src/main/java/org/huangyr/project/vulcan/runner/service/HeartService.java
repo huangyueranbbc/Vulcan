@@ -3,9 +3,10 @@ package org.huangyr.project.vulcan.runner.service;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
+import lombok.extern.slf4j.Slf4j;
+import org.huangyr.project.vulcan.common.DateUtils;
 import org.huangyr.project.vulcan.proto.VulcanHeartPackage;
 import org.huangyr.project.vulcan.runner.Runner;
-import org.huangyr.project.vulcan.common.DateUtils;
 import org.huangyr.project.vulcan.runner.net.client.HeartSocketClient;
 import org.huangyr.project.vulcan.runner.net.client.handler.ServerSocketCommandHandler;
 import org.huangyr.project.vulcan.common.VulcanUtils;
@@ -22,9 +23,8 @@ import org.slf4j.LoggerFactory;
  *
  *  @see Runner#initRunner() runner初始化并启动 {@link HeartService} 服务
  ******************************************************************************/
+@Slf4j
 public class HeartService implements Runnable {
-
-    private static Logger log = LoggerFactory.getLogger(HeartService.class);
 
     private Runner runner;
     private HeartSocketClient heartSocketClient;
@@ -75,7 +75,7 @@ public class HeartService implements Runnable {
 
                 // 达到心跳间隔 发送心跳
                 if (startTime - LAST_HEART_BEAT > HEART_BEAT_INTERVAL) {
-                    log.info("start send heart beat! now:{}", DateUtils.stampToDate(startTime));
+                    log.info("start send heart beat! now:{}", DateUtils.timeStampToDate(startTime));
                     LAST_HEART_BEAT = startTime;
                     // 发送心跳 心跳结果和所有Server指令再Handler里处理
                     sendHeartbeat();

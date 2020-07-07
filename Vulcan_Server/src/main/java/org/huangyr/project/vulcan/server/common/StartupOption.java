@@ -21,13 +21,11 @@ public enum StartupOption {
 
     public static StartupOption parseArguments(String[] args) {
         int argsLen = (args == null) ? 0 : args.length;
-        StartupOption defaultStartupOption = StartupOption.START;
         for (int i = 0; i < argsLen; i++) {
             String cmd = args[i];
-            StartupOption startupOption = getByValue(cmd);
-            return startupOption;
+            return getByValue(cmd);
         }
-        return defaultStartupOption;
+        return StartupOption.START;
     }
 
     public String getName() {

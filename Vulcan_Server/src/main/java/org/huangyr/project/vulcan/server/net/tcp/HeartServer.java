@@ -11,6 +11,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.memcache.binary.BinaryMemcacheObjectAggregator;
 import io.netty.handler.timeout.IdleStateHandler;
 import io.netty.util.concurrent.DefaultThreadFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.huangyr.project.vulcan.server.net.tcp.handler.HeartSocketHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,8 +26,8 @@ import java.util.concurrent.TimeUnit;
  * @author: <a href=mailto:huangyueran>黄跃然</a>
  * @Description: netty服务 socket通信服务
  ******************************************************************************/
+@Slf4j
 public class HeartServer extends Thread {
-    private static Logger log = LoggerFactory.getLogger(HeartServer.class);
     private int port;
     private int bossGroupThreadNum = 0;
     private int workGroupThreadNum = 0;

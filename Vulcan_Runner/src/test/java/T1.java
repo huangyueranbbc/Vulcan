@@ -1,13 +1,12 @@
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.time.FastDateFormat;
-import org.apache.log4j.PropertyConfigurator;
-import org.huangyr.project.vulcan.common.VulcanUtils;
+import org.huangyr.project.vulcan.common.ConfigUtils;
 import org.huangyr.project.vulcan.common.DateUtils;
+import org.huangyr.project.vulcan.common.VulcanUtils;
 import org.huangyr.project.vulcan.proto.VulcanHeartPackage;
 import org.huangyr.project.vulcan.runner.net.client.HeartSocketClient;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Date;
@@ -22,27 +21,15 @@ import static org.huangyr.project.vulcan.runner.common.Constants.*;
  * @author: <a href=mailto:huangyueran>黄跃然</a>
  * @Description:
  ******************************************************************************/
+@Slf4j
 public class T1 {
-    /**
-     * 静态初始化日志
+
+    /*
+     * 日志初始化
      */
     static {
-        Properties properties = new Properties();
-        try {
-            properties.load(T1.class.getClassLoader().getResourceAsStream("log4j.properties"));
-            String time = FastDateFormat.getInstance("yyyy-MM-dd-HH").format(new Date());
-            String logDir = System.getenv("VULCAN_LOG_DIR") + "/vulcan/server/";
-            properties.setProperty("log4j.appender.FILE_INFO.File", logDir + "T1_INFO_" + time + ".log");
-            properties.setProperty("log4j.appender.FILE_WARN.File", logDir + "T1_WARN_" + time + ".log");
-            properties.setProperty("log4j.appender.FILE_ERROR.File", logDir + "T1_ERROR_" + time + ".log");
-        } catch (IOException e) {
-            System.out.println("load log4j.properties exception." + e.fillInStackTrace());
-            System.exit(-1);
-        }
-        PropertyConfigurator.configure(properties);
+        ConfigUtils.initLog4j2Config();
     }
-
-    private static Logger log = LoggerFactory.getLogger(T1.class);
 
     public static void main(String[] args) {
 

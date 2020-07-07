@@ -4,6 +4,7 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.*;
 import io.netty.handler.codec.http.*;
 import io.netty.util.CharsetUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.huangyr.project.vulcan.server.net.config.NettyConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,9 +18,8 @@ import static io.netty.handler.codec.http.HttpHeaderNames.*;
  * @author: <a href=mailto:huangyueran>黄跃然</a>
  * @Description: 请求处理
  ******************************************************************************/
+@Slf4j
 public class HttpServerHandler extends SimpleChannelInboundHandler<HttpObject> {
-
-    private static Logger log = LoggerFactory.getLogger(HttpServerHandler.class);
 
     /**
      * 客户端与服务端创建连接的时候调用

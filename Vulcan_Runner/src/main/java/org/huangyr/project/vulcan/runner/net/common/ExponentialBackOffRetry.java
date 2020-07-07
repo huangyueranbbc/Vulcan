@@ -1,5 +1,6 @@
 package org.huangyr.project.vulcan.runner.net.common;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,10 +14,8 @@ import java.util.Random;
  *
  * {@link RetryPolicy 重试策略接口}
  ******************************************************************************/
+@Slf4j
 public class ExponentialBackOffRetry implements RetryPolicy {
-
-    private static Logger log = LoggerFactory.getLogger(ExponentialBackOffRetry.class);
-
 
     private static final int MAX_RETRIES_LIMIT = 29;
     private static final int DEFAULT_MAX_SLEEP_MS = Integer.MAX_VALUE;

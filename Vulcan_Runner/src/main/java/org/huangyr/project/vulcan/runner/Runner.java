@@ -1,19 +1,15 @@
 package org.huangyr.project.vulcan.runner;
 
-import org.apache.commons.lang3.time.FastDateFormat;
-import org.apache.log4j.PropertyConfigurator;
-import org.huangyr.project.vulcan.runner.common.Constants;
-import org.huangyr.project.vulcan.runner.net.client.HeartSocketClient;
+import lombok.extern.slf4j.Slf4j;
+import org.huangyr.project.vulcan.common.ConfigUtils;
 import org.huangyr.project.vulcan.common.Global;
+import org.huangyr.project.vulcan.runner.common.Constants;
 import org.huangyr.project.vulcan.runner.common.StartupOption;
+import org.huangyr.project.vulcan.runner.net.client.HeartSocketClient;
 import org.huangyr.project.vulcan.runner.service.HeartService;
 import org.huangyr.project.vulcan.runner.service.LeaseManagerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.io.IOException;
-import java.util.Date;
-import java.util.Properties;
 
 import static org.huangyr.project.vulcan.runner.common.ThreadPool.*;
 
@@ -33,29 +29,15 @@ import static org.huangyr.project.vulcan.runner.common.ThreadPool.*;
  * 公用全局变量放到{@link Global}
  * 私有全局变量放到{@link Constants}
  ******************************************************************************/
+@Slf4j
 public class Runner implements Runnable {
 
-    /**
-     * 静态初始化日志
+    /*
+     * 日志初始化
      */
     static {
-        Properties properties = new Properties();
-        try {
-            properties.load(Runner.class.getClassLoader().getResourceAsStream("log4j.properties"));
-            String time = FastDateFormat.getInstance("yyyy-MM-dd-HH").format(new Date());
-            String logDir = System.getenv("VULCAN_LOG_DIR") + "/vulcan/runner/";
-            properties.setProperty("log4j.appender.FILE_INFO.File", logDir + "Vulcan_Runner_INFO_" + time + ".LOG");
-            properties.setProperty("log4j.appender.FILE_WARN.File", logDir + "Vulcan_Runner_WARN_" + time + ".LOG");
-            properties.setProperty("log4j.appender.FILE_ERROR.File", logDir + "Vulcan_Runner_ERROR_" + time + ".LOG");
-            properties.setProperty("log4j.appender.FILE_DEBUG.File", logDir + "Vulcan_Runner_DEBUG_" + time + ".LOG");
-        } catch (IOException e) {
-            System.out.println("load log4j.properties exception." + e.fillInStackTrace());
-            System.exit(-1);
-        }
-        PropertyConfigurator.configure(properties);
+        ConfigUtils.initLog4j2Config();
     }
-
-    private static Logger log = LoggerFactory.getLogger(Runner.class);
 
     /**
      * runner是否结束信号

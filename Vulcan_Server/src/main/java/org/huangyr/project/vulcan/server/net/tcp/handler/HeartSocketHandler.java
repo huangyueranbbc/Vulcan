@@ -5,6 +5,7 @@ import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import lombok.extern.slf4j.Slf4j;
 import org.huangyr.project.vulcan.common.DateUtils;
 import org.huangyr.project.vulcan.common.VulcanUtils;
 import org.huangyr.project.vulcan.proto.Command;
@@ -22,9 +23,8 @@ import java.util.Iterator;
  * @author: <a href=mailto:huangyueran>黄跃然</a>
  * @Description: 心跳请求处理
  ******************************************************************************/
+@Slf4j
 public class HeartSocketHandler extends ChannelInboundHandlerAdapter {
-
-    private static Logger log = LoggerFactory.getLogger(HeartSocketHandler.class);
 
     /**
      * 心跳丢失次数

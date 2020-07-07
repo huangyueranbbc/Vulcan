@@ -13,6 +13,16 @@ import java.util.Date;
 public class DateUtils {
 
     /**
+     * 日期默认格式化
+     */
+    private static ThreadLocal<SimpleDateFormat> dateFormats = new ThreadLocal<SimpleDateFormat>();
+
+    /**
+     * 默认的格式
+     */
+    private static final String DEFAULT_PATTERN = "yyyy-MM-dd HH:mm:ss";
+
+    /**
      * 获取当前运行机器上当前时间
      */
     public static long now() {
@@ -20,18 +30,73 @@ public class DateUtils {
     }
 
     /**
-     * 将时间转换为时间戳
-     * @param dateStr
+     * 按照 yyyy-MM-dd HH:mm:ss 格式化字符串
+     *
+     * @param date
      * @return
-     * @throws ParseException
      */
-    public static String dateToStamp(String dateStr) throws ParseException {
-        String res;
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date date = simpleDateFormat.parse(dateStr);
-        long ts = date.getTime();
-        res = String.valueOf(ts);
-        return res;
+    public static String dateFormat(Date date) {
+        return dateFormat(date, DEFAULT_PATTERN);
+    }
+
+    /**
+     * 格式化字符串
+     *
+     * @param date
+     * @param pattern
+     * @return
+     */
+    public static String dateFormat(Date date, String pattern) {
+        SimpleDateFormat format = dateFormats.get();
+        if (format == null) {
+            format = new SimpleDateFormat();
+            dateFormats.set(format);
+        }
+        format.applyPattern(pattern);
+        String resultDate = format.format(date);
+        dateFormats.remove(); // 防止内存泄漏
+        return resultDate;
+    }
+
+    /**
+     * 按照 yyyy-MM-dd HH:mm:ss 格式化字符串
+     *
+     * @param date
+     * @return
+     */
+    public static String dateToTimeStamp(String date) throws ParseException {
+        return dateToTimeStamp(date, DEFAULT_PATTERN);
+    }
+
+    /**
+     * 按照 yyyy-MM-dd HH:mm:ss 格式化字符串
+     *
+     * @param date
+     * @return
+     */
+    public static String timeStampToDate(Long date) {
+        return timeStampToDate(date, DEFAULT_PATTERN);
+    }
+
+    /**
+     * 根据格式化时间字符串返回时间戳
+     *
+     * @param date
+     * @param pattern
+     * @return
+     */
+    public static String dateToTimeStamp(String date, String pattern) throws ParseException {
+        SimpleDateFormat format = dateFormats.get();
+        if (format == null) {
+            format = new SimpleDateFormat();
+            dateFormats.set(format);
+        }
+        format.applyPattern(pattern);
+        Date dateResult = format.parse(date);
+        long ts = dateResult.getTime();
+        String resTimeStamp = String.valueOf(ts);
+        dateFormats.remove(); // 防止内存泄漏
+        return resTimeStamp;
     }
 
     /**
@@ -39,11 +104,17 @@ public class DateUtils {
      * @param timestamp
      * @return
      */
-    public static String stampToDate(Long timestamp) {
+    public static String timeStampToDate(Long timestamp,String pattern) {
+        SimpleDateFormat format = dateFormats.get();
+        if (format == null) {
+            format = new SimpleDateFormat();
+            dateFormats.set(format);
+        }
+        format.applyPattern(pattern);
         String res;
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date(timestamp);
-        res = simpleDateFormat.format(date);
+        res = format.format(date);
         return res;
     }
+
 }

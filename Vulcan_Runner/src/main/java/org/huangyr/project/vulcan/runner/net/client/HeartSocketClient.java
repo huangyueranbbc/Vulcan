@@ -9,6 +9,7 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.util.concurrent.DefaultThreadFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.huangyr.project.vulcan.runner.common.Constants;
 import org.huangyr.project.vulcan.common.Global;
 import org.huangyr.project.vulcan.runner.net.client.handler.ReconnectHandler;
@@ -29,9 +30,8 @@ import java.util.concurrent.ThreadFactory;
  * 公用全局变量放到{@link Global}
  * 私有全局变量放到{@link Constants}
  ******************************************************************************/
+@Slf4j
 public class HeartSocketClient {
-
-    private static Logger log = LoggerFactory.getLogger(HeartSocketClient.class);
 
     private int port;
     private String host;

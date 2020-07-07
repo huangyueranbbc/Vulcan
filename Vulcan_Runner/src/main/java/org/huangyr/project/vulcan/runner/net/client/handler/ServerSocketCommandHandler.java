@@ -3,6 +3,7 @@ package org.huangyr.project.vulcan.runner.net.client.handler;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import lombok.extern.slf4j.Slf4j;
 import org.huangyr.project.vulcan.proto.ServerCommandPackage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,10 +14,8 @@ import org.slf4j.LoggerFactory;
  * @author: <a href=mailto:huangyueran>黄跃然</a>
  * @Description: Socket长连接处理器 处理Server下发的命令
  ******************************************************************************/
+@Slf4j
 public class ServerSocketCommandHandler extends ChannelInboundHandlerAdapter {
-
-    private static Logger log = LoggerFactory.getLogger(ServerSocketCommandHandler.class);
-
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
