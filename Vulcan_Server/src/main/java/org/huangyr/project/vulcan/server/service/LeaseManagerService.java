@@ -1,7 +1,7 @@
-package org.huangyr.project.vulcan.runner.service;
+package org.huangyr.project.vulcan.server.service;
 
 
-import org.huangyr.project.vulcan.runner.Runner;
+import org.huangyr.project.vulcan.server.common.Constants;
 
 /*******************************************************************************
  *
@@ -11,11 +11,9 @@ import org.huangyr.project.vulcan.runner.Runner;
  ******************************************************************************/
 public class LeaseManagerService implements Runnable {
 
-    private Runner runner;
+    private long softLimit = Constants.LEASE_SOFTLIMIT_PERIOD;
 
-    public LeaseManagerService(Runner runner) {
-        this.runner = runner;
-    }
+    private long hardLimit = Constants.LEASE_HARDLIMIT_PERIOD;
 
     /**
      * 租约管理

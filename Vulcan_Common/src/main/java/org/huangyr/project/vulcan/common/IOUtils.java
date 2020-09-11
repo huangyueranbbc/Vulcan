@@ -1,12 +1,16 @@
 package org.huangyr.project.vulcan.common;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.logging.Log;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigInteger;
 import java.net.HttpURLConnection;
 import java.net.URLConnection;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 /*******************************************************************************
  *
@@ -45,7 +49,7 @@ public class IOUtils {
      * Close the Closeable objects and <b>ignore</b> any {@link IOException} or
      * null pointers. Must only be used for cleanup in exception handlers.
      *
-     * @param log the log to record problems to at debug level. Can be null.
+     * @param log        the log to record problems to at debug level. Can be null.
      * @param closeables the objects to close
      */
     public static void cleanup(Log log, java.io.Closeable... closeables) {
@@ -53,7 +57,7 @@ public class IOUtils {
             if (c != null) {
                 try {
                     c.close();
-                } catch(IOException e) {
+                } catch (IOException e) {
                     if (log != null && log.isDebugEnabled()) {
                         log.debug("Exception in closing " + c, e);
                     }
@@ -66,22 +70,16 @@ public class IOUtils {
      * 读取 InputStream 到 String字符串中
      */
     public static String readStream(InputStream in) throws IOException {
-        //<1>创建字节数组输出流，用来输出读取到的内容
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        //<2>创建缓存大小
-        byte[] buffer = new byte[1024]; // 1KB
-        //每次读取到内容的长度
+        byte[] buffer = new byte[1024];
         int len = -1;
-        //<3>开始读取输入流中的内容
-        while ((len = in.read(buffer)) != -1) { //当等于-1说明没有数据可以读取了
-            baos.write(buffer, 0, len);   //把读取到的内容写到输出流中
+        while ((len = in.read(buffer)) != -1) {
+            baos.write(buffer, 0, len);
         }
-        //<4> 把字节数组转换为字符串
         String content = baos.toString();
-        //<5>关闭输入流和输出流
         in.close();
         baos.close();
-        //<6>返回字符串结果
         return content;
     }
+
 }

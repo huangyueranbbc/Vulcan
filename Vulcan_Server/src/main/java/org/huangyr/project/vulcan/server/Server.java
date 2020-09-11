@@ -9,6 +9,9 @@ import org.huangyr.project.vulcan.server.common.StartupOption;
 import org.huangyr.project.vulcan.server.dag.DAG;
 import org.huangyr.project.vulcan.server.net.http.HttpServer;
 import org.huangyr.project.vulcan.server.net.tcp.HeartServer;
+import org.huangyr.project.vulcan.server.service.LeaseManagerService;
+
+import static org.huangyr.project.vulcan.runner.common.ThreadPool.lmThreadPool;
 
 /*******************************************************************************
  *
@@ -24,6 +27,7 @@ import org.huangyr.project.vulcan.server.net.tcp.HeartServer;
  * @see HeartServer socket服务,主要用于处理心跳，汇总runner运行状况,以及根据连接下发指令给Runner{@link Server#heartServer}
  * @see DAG 通过DAG有向无环图进行任务扫描算法
  * @see Runner 服务
+ * @see LeaseManagerService#run()  租约管理线程
  *
  * 公用全局变量放到{@link Global}
  * 私有全局变量放到{@link Constants}
@@ -97,6 +101,12 @@ public class Server {
             heartServer = new HeartServer(8888, 1, 1, false);
             heartServer.start();
 
+            // 租约管理线程
+            // TODO 1、TreeSet存放每个Lease(<holder,leaseinfo>
+            // TODO 2、定时器不断统计每个服务的lease状况，如果超时，移除服务(removed)
+            // TODO 3、当服务连接时，根据服务租约使用情况来更新租约。 每个服务也会拿到自己的租约情况，根据软超时和硬超时来确认自己的服务状态是否有效。
+            // TODO 4、如果软超时，Runner会进行重新加入。如果硬超时，Runner会知道自己已经被移除出服务，会关闭自身。(暂定)
+            lmThreadPool.execute(new LeaseManagerService());
             // TODO JOB扫描任务
 
         } catch (Exception e) {

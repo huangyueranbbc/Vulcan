@@ -1,5 +1,9 @@
 package org.huangyr.project.vulcan.runner.common;
 
+import io.netty.bootstrap.Bootstrap;
+
+import java.util.UUID;
+
 /*******************************************************************************
  *
  * @date 2019-12-18 2:22 PM 
@@ -8,7 +12,12 @@ package org.huangyr.project.vulcan.runner.common;
  ******************************************************************************/
 public class Constants {
 
-    public static String SERVER_IP = "127.0.0.1";
+    /**
+     * 配置中配置的runner name. TODO
+      */
+    public static final String RUNNER_NAME = "RUNNER_" + UUID.randomUUID().toString();
+
+    public static String SERVER_IP = "10.8.8.228";
 
     public static Integer SERVER_PORT = 8888;
 
@@ -31,5 +40,7 @@ public class Constants {
      * 入库线程数
      */
     public static Integer RUNNER_THREAD_NUM = 1;
+
+    public static Bootstrap client;
 
 }

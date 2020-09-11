@@ -6,15 +6,21 @@ import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import lombok.extern.slf4j.Slf4j;
+import org.huangyr.project.vulcan.common.CommonUtils;
 import org.huangyr.project.vulcan.common.DateUtils;
 import org.huangyr.project.vulcan.common.VulcanUtils;
 import org.huangyr.project.vulcan.proto.Command;
+import org.huangyr.project.vulcan.proto.RunnerNodeInfo;
 import org.huangyr.project.vulcan.proto.ServerCommandPackage;
 import org.huangyr.project.vulcan.proto.VulcanHeartPackage;
+import org.huangyr.project.vulcan.runner.Runner;
+import org.huangyr.project.vulcan.server.Server;
+import org.huangyr.project.vulcan.server.common.Constants;
 import org.huangyr.project.vulcan.server.net.config.NettyConfig;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.huangyr.project.vulcan.status.ProtocolCode;
+import org.huangyr.project.vulcan.status.RunnerInfo;
 
+import java.net.InetSocketAddress;
 import java.util.Iterator;
 
 /*******************************************************************************
@@ -85,27 +91,22 @@ public class HeartSocketHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
         try {
+            long heartTime = DateUtils.now();
             log.debug("get heart package data:{}", msg);
-
             ByteBuf buf = (ByteBuf) msg;
             byte[] req = new byte[buf.readableBytes()];
             buf.readBytes(req);
             VulcanHeartPackage vulcanHeartPackage = VulcanHeartPackage.parseFrom(req);
-            log.info("get heart package data:{}", vulcanHeartPackage);
+            log.info("get heart package data:{}", vulcanHeartPackage.toBuilder());
 
-            // TODO 处理心跳信息
-            ServerCommandPackage.Builder heartResultBuilder = ServerCommandPackage.newBuilder();
-            heartResultBuilder.setResultCode(200);
-            heartResultBuilder.setMessage(VulcanUtils.getHostname() + "我收到你的心跳啦!");
-            heartResultBuilder.setCommand(Command.NORMAL);
-            heartResultBuilder.setResponseHeartTime(DateUtils.now());
+            // 获取发送端的ip和端口
+            InetSocketAddress insocket = (InetSocketAddress) ctx.channel().remoteAddress();
 
-            ByteBuf resp = Unpooled.copiedBuffer(heartResultBuilder.build().toByteArray());
+            ByteBuf resp = handlerHeart(vulcanHeartPackage, heartTime, insocket);
 
             //返回给客户端
             ctx.channel().writeAndFlush(resp);
-
-            // TODO 模拟发送关闭Runner指令
+            // FIXME 模拟发送关闭Runner指令
             // 服务端使用这个就能向 每个连接上来的客户端群发消息
             // ChannelGroupFuture channelFutures = NettyConfig.group.writeAndFlush(resp1);
             // log.info("send result:{}", channelFutures.isSuccess());
@@ -114,6 +115,71 @@ public class HeartSocketHandler extends ChannelInboundHandlerAdapter {
             log.info("handle the node:{} heart success.", vulcanHeartPackage.getIp());
         } catch (Exception e) {
             log.error("netty channel read has error. msg:{}", msg, e);
+        }
+    }
+
+    /**
+     * 处理心跳
+     *
+     * @param vulcanHeartPackage
+     * @param heartTime
+     * @param insocket
+     */
+    private ByteBuf handlerHeart(VulcanHeartPackage vulcanHeartPackage, long heartTime, InetSocketAddress insocket) {
+        try {
+            // runner ip and port.
+            String ip = insocket.getAddress().getHostAddress();
+            int port = insocket.getPort();
+
+            String packageIp = vulcanHeartPackage.getIp();
+            // package heart time.
+            long packageHeartTime = vulcanHeartPackage.getHeartTime();
+            String message = vulcanHeartPackage.getMessage();
+            String nodename = vulcanHeartPackage.getNodename();
+            RunnerNodeInfo runnerNodeInfo = vulcanHeartPackage.getRunnerNodeInfo();
+
+            // 更新集群的runner节点信息
+            RunnerInfo runnerInfo = Constants.runnerInfoMap.getOrDefault(nodename, new RunnerInfo());
+
+            if (Constants.runnerInfoMap.containsKey(nodename)) {
+                // 首次连接
+                // TODO 给Runner分配租约Lease
+            }
+
+            // 更新runner信息
+            if (heartTime >= packageHeartTime && runnerInfo.getLastHeartTime() < packageHeartTime) {
+                // 包接收的时间在接收范围内
+                runnerInfo.setLastHeartTime(heartTime);
+            } else {
+                log.warn("the runner heart package is timeout. ip:{} name:{}", ip, nodename);
+                // 非正常心跳 过滤
+                ServerCommandPackage.Builder errorPackage = ServerCommandPackage.newBuilder();
+                errorPackage.setResultCode(ProtocolCode.PROTOCOL_CODE_50005.getCode());
+                errorPackage.setMessage(ProtocolCode.PROTOCOL_CODE_50005.getMessage());
+                return Unpooled.copiedBuffer(errorPackage.build().toByteArray());
+            }
+            runnerInfo.setName(nodename);
+            runnerInfo.setIdentifying(CommonUtils.getIdentifying(nodename, ip, port));
+            runnerInfo.setIp(ip);
+            runnerInfo.setPort(port);
+            Constants.runnerInfoMap.putIfAbsent(nodename, runnerInfo);
+            log.info("current connecting runner:{}", Constants.runnerInfoMap);
+
+            // TODO 更新租约
+
+            // TODO 处理心跳信息
+            ServerCommandPackage.Builder heartResultBuilder = ServerCommandPackage.newBuilder();
+            heartResultBuilder.setResultCode(ProtocolCode.SUCCESS.getCode());
+            heartResultBuilder.setMessage(VulcanUtils.getHostname() + "我收到你的心跳啦!");
+            heartResultBuilder.setCommand(Command.NORMAL);
+            heartResultBuilder.setResponseHeartTime(DateUtils.now());
+            return Unpooled.copiedBuffer(heartResultBuilder.build().toByteArray());
+        } catch (Exception e) {
+            log.error("handler heart errot.", e);
+            ServerCommandPackage.Builder errorPackage = ServerCommandPackage.newBuilder();
+            errorPackage.setResultCode(ProtocolCode.PROTOCOL_CODE_50001.getCode());
+            errorPackage.setMessage("server can not process the message.");
+            return Unpooled.copiedBuffer(errorPackage.build().toByteArray());
         }
     }
 

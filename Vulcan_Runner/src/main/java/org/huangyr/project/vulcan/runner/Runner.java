@@ -7,9 +7,7 @@ import org.huangyr.project.vulcan.runner.common.Constants;
 import org.huangyr.project.vulcan.runner.common.StartupOption;
 import org.huangyr.project.vulcan.runner.net.client.HeartSocketClient;
 import org.huangyr.project.vulcan.runner.service.HeartService;
-import org.huangyr.project.vulcan.runner.service.LeaseManagerService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.huangyr.project.vulcan.runner.service.LeaseMonitor;
 
 import static org.huangyr.project.vulcan.runner.common.ThreadPool.*;
 
@@ -24,7 +22,7 @@ import static org.huangyr.project.vulcan.runner.common.ThreadPool.*;
  * Runner服务是否运行信号量{@link Runner#shouldRun}
  * 初始化Runner服务，初始化并启动心跳检测线程和租约管理线程,建立和Server的通信连接{@link Runner#initRunner()}
  * @see HeartService#run()  心跳线程
- * @see LeaseManagerService#run()  租约管理线程
+ * @see LeaseMonitor#run()  租约管理线程
  *
  * 公用全局变量放到{@link Global}
  * 私有全局变量放到{@link Constants}
@@ -99,7 +97,8 @@ public class Runner implements Runnable {
         heartSocketClient.start();
         // 初始化心跳请求线程
         heartThreadPool.execute(new HeartService(runner, heartSocketClient));
-        lmThreadPool.execute(new LeaseManagerService(runner));
+        // 租约监听,如果到期,程序会退出服务。
+        lmThreadPool.execute(new LeaseMonitor(runner));
         return runner;
     }
 

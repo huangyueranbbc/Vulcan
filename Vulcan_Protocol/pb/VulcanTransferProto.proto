@@ -8,9 +8,10 @@ package org.huangyr.project.vulcan.proto;
 // 心跳数据包
 message VulcanHeartPackage {
   string message = 1; // 心跳消息
-  string ip = 2; // 发送心跳的机器IP
-  uint64 heartTime = 3; // 发送心跳时间
-  RunnerNodeInfo runnerNodeInfo = 4; // 上报Runner自身节点信息
+  string nodename = 2; // 机器的名称
+  string ip = 3; // 发送心跳的机器IP
+  uint64 heartTime = 4; // 发送心跳时间
+  RunnerNodeInfo runnerNodeInfo = 5; // 上报Runner自身节点信息
 }
 
 // 心跳结果报

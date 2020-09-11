@@ -39,18 +39,18 @@ public final class VulcanTransferProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\031VulcanTransferProto.proto\022 org.huangyr" +
-      ".project.vulcan.proto\"\216\001\n\022VulcanHeartPac" +
-      "kage\022\017\n\007message\030\001 \001(\t\022\n\n\002ip\030\002 \001(\t\022\021\n\thea" +
-      "rtTime\030\003 \001(\004\022H\n\016runnerNodeInfo\030\004 \001(\01320.o" +
-      "rg.huangyr.project.vulcan.proto.RunnerNo" +
-      "deInfo\"\222\001\n\024ServerCommandPackage\022\022\n\nresul" +
-      "tCode\030\001 \001(\005\022:\n\007command\030\002 \001(\0162).org.huang" +
-      "yr.project.vulcan.proto.Command\022\017\n\007messa" +
-      "ge\030\003 \001(\t\022\031\n\021responseHeartTime\030\004 \001(\004\"\020\n\016R" +
-      "unnerNodeInfo*0\n\007Command\022\n\n\006NORMAL\020\000\022\014\n\010" +
-      "SHUTDOWN\020\001\022\013\n\007UPGRADE\020\002B9\n org.huangyr.p" +
-      "roject.vulcan.protoB\023VulcanTransferProto" +
-      "P\001b\006proto3"
+      ".project.vulcan.proto\"\240\001\n\022VulcanHeartPac" +
+      "kage\022\017\n\007message\030\001 \001(\t\022\020\n\010nodename\030\002 \001(\t\022" +
+      "\n\n\002ip\030\003 \001(\t\022\021\n\theartTime\030\004 \001(\004\022H\n\016runner" +
+      "NodeInfo\030\005 \001(\01320.org.huangyr.project.vul" +
+      "can.proto.RunnerNodeInfo\"\222\001\n\024ServerComma" +
+      "ndPackage\022\022\n\nresultCode\030\001 \001(\005\022:\n\007command" +
+      "\030\002 \001(\0162).org.huangyr.project.vulcan.prot" +
+      "o.Command\022\017\n\007message\030\003 \001(\t\022\031\n\021responseHe" +
+      "artTime\030\004 \001(\004\"\020\n\016RunnerNodeInfo*0\n\007Comma" +
+      "nd\022\n\n\006NORMAL\020\000\022\014\n\010SHUTDOWN\020\001\022\013\n\007UPGRADE\020" +
+      "\002B9\n org.huangyr.project.vulcan.protoB\023V" +
+      "ulcanTransferProtoP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -69,7 +69,7 @@ public final class VulcanTransferProto {
     internal_static_org_huangyr_project_vulcan_proto_VulcanHeartPackage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_org_huangyr_project_vulcan_proto_VulcanHeartPackage_descriptor,
-        new java.lang.String[] { "Message", "Ip", "HeartTime", "RunnerNodeInfo", });
+        new java.lang.String[] { "Message", "Nodename", "Ip", "HeartTime", "RunnerNodeInfo", });
     internal_static_org_huangyr_project_vulcan_proto_ServerCommandPackage_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_org_huangyr_project_vulcan_proto_ServerCommandPackage_fieldAccessorTable = new

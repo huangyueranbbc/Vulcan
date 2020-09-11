@@ -1,6 +1,7 @@
 package org.huangyr.project.vulcan.common;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import java.io.File;
 import java.net.InetAddress;
@@ -42,4 +43,18 @@ public class CommonUtils {
         return ip;
     }
 
+    public static String md5String(String str) {
+        return DigestUtils.md5Hex(str);
+    }
+
+    public static String sha1String(String str) {
+        return DigestUtils.sha1Hex(str);
+    }
+
+    /**
+     * 获取机器的标识
+     */
+    public static String getIdentifying(String nodeName, String ip, int port) {
+        return sha1String(nodeName + ip + port);
+    }
 }

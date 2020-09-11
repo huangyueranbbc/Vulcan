@@ -21,6 +21,7 @@ private static final long serialVersionUID = 0L;
   }
   private VulcanHeartPackage() {
     message_ = "";
+    nodename_ = "";
     ip_ = "";
     heartTime_ = 0L;
   }
@@ -58,15 +59,21 @@ private static final long serialVersionUID = 0L;
           case 18: {
             java.lang.String s = input.readStringRequireUtf8();
 
+            nodename_ = s;
+            break;
+          }
+          case 26: {
+            java.lang.String s = input.readStringRequireUtf8();
+
             ip_ = s;
             break;
           }
-          case 24: {
+          case 32: {
 
             heartTime_ = input.readUInt64();
             break;
           }
-          case 34: {
+          case 42: {
             org.huangyr.project.vulcan.proto.RunnerNodeInfo.Builder subBuilder = null;
             if (runnerNodeInfo_ != null) {
               subBuilder = runnerNodeInfo_.toBuilder();
@@ -153,14 +160,56 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int IP_FIELD_NUMBER = 2;
+  public static final int NODENAME_FIELD_NUMBER = 2;
+  private volatile java.lang.Object nodename_;
+  /**
+   * <pre>
+   * 机器的名称
+   * </pre>
+   *
+   * <code>string nodename = 2;</code>
+   */
+  public java.lang.String getNodename() {
+    java.lang.Object ref = nodename_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      nodename_ = s;
+      return s;
+    }
+  }
+  /**
+   * <pre>
+   * 机器的名称
+   * </pre>
+   *
+   * <code>string nodename = 2;</code>
+   */
+  public com.google.protobuf.ByteString
+      getNodenameBytes() {
+    java.lang.Object ref = nodename_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      nodename_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  public static final int IP_FIELD_NUMBER = 3;
   private volatile java.lang.Object ip_;
   /**
    * <pre>
    * 发送心跳的机器IP
    * </pre>
    *
-   * <code>string ip = 2;</code>
+   * <code>string ip = 3;</code>
    */
   public java.lang.String getIp() {
     java.lang.Object ref = ip_;
@@ -179,7 +228,7 @@ private static final long serialVersionUID = 0L;
    * 发送心跳的机器IP
    * </pre>
    *
-   * <code>string ip = 2;</code>
+   * <code>string ip = 3;</code>
    */
   public com.google.protobuf.ByteString
       getIpBytes() {
@@ -195,27 +244,27 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int HEARTTIME_FIELD_NUMBER = 3;
+  public static final int HEARTTIME_FIELD_NUMBER = 4;
   private long heartTime_;
   /**
    * <pre>
    * 发送心跳时间
    * </pre>
    *
-   * <code>uint64 heartTime = 3;</code>
+   * <code>uint64 heartTime = 4;</code>
    */
   public long getHeartTime() {
     return heartTime_;
   }
 
-  public static final int RUNNERNODEINFO_FIELD_NUMBER = 4;
+  public static final int RUNNERNODEINFO_FIELD_NUMBER = 5;
   private org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo_;
   /**
    * <pre>
    * 上报Runner自身节点信息
    * </pre>
    *
-   * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 4;</code>
+   * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 5;</code>
    */
   public boolean hasRunnerNodeInfo() {
     return runnerNodeInfo_ != null;
@@ -225,7 +274,7 @@ private static final long serialVersionUID = 0L;
    * 上报Runner自身节点信息
    * </pre>
    *
-   * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 4;</code>
+   * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 5;</code>
    */
   public org.huangyr.project.vulcan.proto.RunnerNodeInfo getRunnerNodeInfo() {
     return runnerNodeInfo_ == null ? org.huangyr.project.vulcan.proto.RunnerNodeInfo.getDefaultInstance() : runnerNodeInfo_;
@@ -235,7 +284,7 @@ private static final long serialVersionUID = 0L;
    * 上报Runner自身节点信息
    * </pre>
    *
-   * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 4;</code>
+   * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 5;</code>
    */
   public org.huangyr.project.vulcan.proto.RunnerNodeInfoOrBuilder getRunnerNodeInfoOrBuilder() {
     return getRunnerNodeInfo();
@@ -258,14 +307,17 @@ private static final long serialVersionUID = 0L;
     if (!getMessageBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 1, message_);
     }
+    if (!getNodenameBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, nodename_);
+    }
     if (!getIpBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, ip_);
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, ip_);
     }
     if (heartTime_ != 0L) {
-      output.writeUInt64(3, heartTime_);
+      output.writeUInt64(4, heartTime_);
     }
     if (runnerNodeInfo_ != null) {
-      output.writeMessage(4, getRunnerNodeInfo());
+      output.writeMessage(5, getRunnerNodeInfo());
     }
     unknownFields.writeTo(output);
   }
@@ -279,16 +331,19 @@ private static final long serialVersionUID = 0L;
     if (!getMessageBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, message_);
     }
+    if (!getNodenameBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, nodename_);
+    }
     if (!getIpBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, ip_);
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, ip_);
     }
     if (heartTime_ != 0L) {
       size += com.google.protobuf.CodedOutputStream
-        .computeUInt64Size(3, heartTime_);
+        .computeUInt64Size(4, heartTime_);
     }
     if (runnerNodeInfo_ != null) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(4, getRunnerNodeInfo());
+        .computeMessageSize(5, getRunnerNodeInfo());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -308,6 +363,8 @@ private static final long serialVersionUID = 0L;
     boolean result = true;
     result = result && getMessage()
         .equals(other.getMessage());
+    result = result && getNodename()
+        .equals(other.getNodename());
     result = result && getIp()
         .equals(other.getIp());
     result = result && (getHeartTime()
@@ -330,6 +387,8 @@ private static final long serialVersionUID = 0L;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
     hash = (53 * hash) + getMessage().hashCode();
+    hash = (37 * hash) + NODENAME_FIELD_NUMBER;
+    hash = (53 * hash) + getNodename().hashCode();
     hash = (37 * hash) + IP_FIELD_NUMBER;
     hash = (53 * hash) + getIp().hashCode();
     hash = (37 * hash) + HEARTTIME_FIELD_NUMBER;
@@ -478,6 +537,8 @@ private static final long serialVersionUID = 0L;
       super.clear();
       message_ = "";
 
+      nodename_ = "";
+
       ip_ = "";
 
       heartTime_ = 0L;
@@ -515,6 +576,7 @@ private static final long serialVersionUID = 0L;
     public org.huangyr.project.vulcan.proto.VulcanHeartPackage buildPartial() {
       org.huangyr.project.vulcan.proto.VulcanHeartPackage result = new org.huangyr.project.vulcan.proto.VulcanHeartPackage(this);
       result.message_ = message_;
+      result.nodename_ = nodename_;
       result.ip_ = ip_;
       result.heartTime_ = heartTime_;
       if (runnerNodeInfoBuilder_ == null) {
@@ -572,6 +634,10 @@ private static final long serialVersionUID = 0L;
       if (other == org.huangyr.project.vulcan.proto.VulcanHeartPackage.getDefaultInstance()) return this;
       if (!other.getMessage().isEmpty()) {
         message_ = other.message_;
+        onChanged();
+      }
+      if (!other.getNodename().isEmpty()) {
+        nodename_ = other.nodename_;
         onChanged();
       }
       if (!other.getIp().isEmpty()) {
@@ -702,13 +768,102 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
+    private java.lang.Object nodename_ = "";
+    /**
+     * <pre>
+     * 机器的名称
+     * </pre>
+     *
+     * <code>string nodename = 2;</code>
+     */
+    public java.lang.String getNodename() {
+      java.lang.Object ref = nodename_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        nodename_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <pre>
+     * 机器的名称
+     * </pre>
+     *
+     * <code>string nodename = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getNodenameBytes() {
+      java.lang.Object ref = nodename_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        nodename_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <pre>
+     * 机器的名称
+     * </pre>
+     *
+     * <code>string nodename = 2;</code>
+     */
+    public Builder setNodename(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      nodename_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * 机器的名称
+     * </pre>
+     *
+     * <code>string nodename = 2;</code>
+     */
+    public Builder clearNodename() {
+      
+      nodename_ = getDefaultInstance().getNodename();
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * 机器的名称
+     * </pre>
+     *
+     * <code>string nodename = 2;</code>
+     */
+    public Builder setNodenameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      nodename_ = value;
+      onChanged();
+      return this;
+    }
+
     private java.lang.Object ip_ = "";
     /**
      * <pre>
      * 发送心跳的机器IP
      * </pre>
      *
-     * <code>string ip = 2;</code>
+     * <code>string ip = 3;</code>
      */
     public java.lang.String getIp() {
       java.lang.Object ref = ip_;
@@ -727,7 +882,7 @@ private static final long serialVersionUID = 0L;
      * 发送心跳的机器IP
      * </pre>
      *
-     * <code>string ip = 2;</code>
+     * <code>string ip = 3;</code>
      */
     public com.google.protobuf.ByteString
         getIpBytes() {
@@ -747,7 +902,7 @@ private static final long serialVersionUID = 0L;
      * 发送心跳的机器IP
      * </pre>
      *
-     * <code>string ip = 2;</code>
+     * <code>string ip = 3;</code>
      */
     public Builder setIp(
         java.lang.String value) {
@@ -764,7 +919,7 @@ private static final long serialVersionUID = 0L;
      * 发送心跳的机器IP
      * </pre>
      *
-     * <code>string ip = 2;</code>
+     * <code>string ip = 3;</code>
      */
     public Builder clearIp() {
       
@@ -777,7 +932,7 @@ private static final long serialVersionUID = 0L;
      * 发送心跳的机器IP
      * </pre>
      *
-     * <code>string ip = 2;</code>
+     * <code>string ip = 3;</code>
      */
     public Builder setIpBytes(
         com.google.protobuf.ByteString value) {
@@ -797,7 +952,7 @@ private static final long serialVersionUID = 0L;
      * 发送心跳时间
      * </pre>
      *
-     * <code>uint64 heartTime = 3;</code>
+     * <code>uint64 heartTime = 4;</code>
      */
     public long getHeartTime() {
       return heartTime_;
@@ -807,7 +962,7 @@ private static final long serialVersionUID = 0L;
      * 发送心跳时间
      * </pre>
      *
-     * <code>uint64 heartTime = 3;</code>
+     * <code>uint64 heartTime = 4;</code>
      */
     public Builder setHeartTime(long value) {
       
@@ -820,7 +975,7 @@ private static final long serialVersionUID = 0L;
      * 发送心跳时间
      * </pre>
      *
-     * <code>uint64 heartTime = 3;</code>
+     * <code>uint64 heartTime = 4;</code>
      */
     public Builder clearHeartTime() {
       
@@ -837,7 +992,7 @@ private static final long serialVersionUID = 0L;
      * 上报Runner自身节点信息
      * </pre>
      *
-     * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 4;</code>
+     * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 5;</code>
      */
     public boolean hasRunnerNodeInfo() {
       return runnerNodeInfoBuilder_ != null || runnerNodeInfo_ != null;
@@ -847,7 +1002,7 @@ private static final long serialVersionUID = 0L;
      * 上报Runner自身节点信息
      * </pre>
      *
-     * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 4;</code>
+     * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 5;</code>
      */
     public org.huangyr.project.vulcan.proto.RunnerNodeInfo getRunnerNodeInfo() {
       if (runnerNodeInfoBuilder_ == null) {
@@ -861,7 +1016,7 @@ private static final long serialVersionUID = 0L;
      * 上报Runner自身节点信息
      * </pre>
      *
-     * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 4;</code>
+     * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 5;</code>
      */
     public Builder setRunnerNodeInfo(org.huangyr.project.vulcan.proto.RunnerNodeInfo value) {
       if (runnerNodeInfoBuilder_ == null) {
@@ -881,7 +1036,7 @@ private static final long serialVersionUID = 0L;
      * 上报Runner自身节点信息
      * </pre>
      *
-     * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 4;</code>
+     * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 5;</code>
      */
     public Builder setRunnerNodeInfo(
         org.huangyr.project.vulcan.proto.RunnerNodeInfo.Builder builderForValue) {
@@ -899,7 +1054,7 @@ private static final long serialVersionUID = 0L;
      * 上报Runner自身节点信息
      * </pre>
      *
-     * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 4;</code>
+     * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 5;</code>
      */
     public Builder mergeRunnerNodeInfo(org.huangyr.project.vulcan.proto.RunnerNodeInfo value) {
       if (runnerNodeInfoBuilder_ == null) {
@@ -921,7 +1076,7 @@ private static final long serialVersionUID = 0L;
      * 上报Runner自身节点信息
      * </pre>
      *
-     * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 4;</code>
+     * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 5;</code>
      */
     public Builder clearRunnerNodeInfo() {
       if (runnerNodeInfoBuilder_ == null) {
@@ -939,7 +1094,7 @@ private static final long serialVersionUID = 0L;
      * 上报Runner自身节点信息
      * </pre>
      *
-     * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 4;</code>
+     * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 5;</code>
      */
     public org.huangyr.project.vulcan.proto.RunnerNodeInfo.Builder getRunnerNodeInfoBuilder() {
       
@@ -951,7 +1106,7 @@ private static final long serialVersionUID = 0L;
      * 上报Runner自身节点信息
      * </pre>
      *
-     * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 4;</code>
+     * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 5;</code>
      */
     public org.huangyr.project.vulcan.proto.RunnerNodeInfoOrBuilder getRunnerNodeInfoOrBuilder() {
       if (runnerNodeInfoBuilder_ != null) {
@@ -966,7 +1121,7 @@ private static final long serialVersionUID = 0L;
      * 上报Runner自身节点信息
      * </pre>
      *
-     * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 4;</code>
+     * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 5;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         org.huangyr.project.vulcan.proto.RunnerNodeInfo, org.huangyr.project.vulcan.proto.RunnerNodeInfo.Builder, org.huangyr.project.vulcan.proto.RunnerNodeInfoOrBuilder> 

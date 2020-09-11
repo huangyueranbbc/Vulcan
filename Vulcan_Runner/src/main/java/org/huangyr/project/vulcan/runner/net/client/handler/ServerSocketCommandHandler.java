@@ -33,7 +33,7 @@ public class ServerSocketCommandHandler extends ChannelInboundHandlerAdapter {
         //                    continue;
         //                }
 
-        log.info("客户端收到消息：" + msg);
+        log.info("runner收到消息：" + msg);
         ByteBuf buf = (ByteBuf) msg;
         byte[] bytes = new byte[buf.readableBytes()];
         buf.readBytes(bytes);

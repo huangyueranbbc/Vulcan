@@ -7,11 +7,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.huangyr.project.vulcan.common.DateUtils;
 import org.huangyr.project.vulcan.proto.VulcanHeartPackage;
 import org.huangyr.project.vulcan.runner.Runner;
+import org.huangyr.project.vulcan.runner.common.Constants;
 import org.huangyr.project.vulcan.runner.net.client.HeartSocketClient;
 import org.huangyr.project.vulcan.runner.net.client.handler.ServerSocketCommandHandler;
 import org.huangyr.project.vulcan.common.VulcanUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Random;
+import java.util.UUID;
 
 /*******************************************************************************
  *
@@ -80,7 +84,6 @@ public class HeartService implements Runnable {
                     // 发送心跳 心跳结果和所有Server指令再Handler里处理
                     sendHeartbeat();
                 }
-
             } catch (Exception e) {
                 log.error("offerservice has error.", e);
             }
@@ -96,10 +99,12 @@ public class HeartService implements Runnable {
     private void sendHeartbeat() {
         VulcanHeartPackage.Builder heartBuilder = VulcanHeartPackage.newBuilder();
         heartBuilder.setIp(VulcanUtils.getHostname());
+        // TODO 配置化
+        heartBuilder.setNodename(Constants.RUNNER_NAME);
         heartBuilder.setHeartTime(runner.now());
         heartBuilder.setMessage("我发送心跳啦!");
-        VulcanHeartPackage heartPackage = heartBuilder.build();
-        ByteBuf pb = Unpooled.copiedBuffer(heartPackage.toByteArray());
+        VulcanHeartPackage.Builder builder = heartBuilder.build().toBuilder();
+        ByteBuf pb = Unpooled.copiedBuffer(builder.build().toByteArray());
         heartSocketClient.sendMessage(pb);
     }
 }

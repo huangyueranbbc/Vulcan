@@ -27,10 +27,28 @@ public interface VulcanHeartPackageOrBuilder extends
 
   /**
    * <pre>
+   * 机器的名称
+   * </pre>
+   *
+   * <code>string nodename = 2;</code>
+   */
+  java.lang.String getNodename();
+  /**
+   * <pre>
+   * 机器的名称
+   * </pre>
+   *
+   * <code>string nodename = 2;</code>
+   */
+  com.google.protobuf.ByteString
+      getNodenameBytes();
+
+  /**
+   * <pre>
    * 发送心跳的机器IP
    * </pre>
    *
-   * <code>string ip = 2;</code>
+   * <code>string ip = 3;</code>
    */
   java.lang.String getIp();
   /**
@@ -38,7 +56,7 @@ public interface VulcanHeartPackageOrBuilder extends
    * 发送心跳的机器IP
    * </pre>
    *
-   * <code>string ip = 2;</code>
+   * <code>string ip = 3;</code>
    */
   com.google.protobuf.ByteString
       getIpBytes();
@@ -48,7 +66,7 @@ public interface VulcanHeartPackageOrBuilder extends
    * 发送心跳时间
    * </pre>
    *
-   * <code>uint64 heartTime = 3;</code>
+   * <code>uint64 heartTime = 4;</code>
    */
   long getHeartTime();
 
@@ -57,7 +75,7 @@ public interface VulcanHeartPackageOrBuilder extends
    * 上报Runner自身节点信息
    * </pre>
    *
-   * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 4;</code>
+   * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 5;</code>
    */
   boolean hasRunnerNodeInfo();
   /**
@@ -65,7 +83,7 @@ public interface VulcanHeartPackageOrBuilder extends
    * 上报Runner自身节点信息
    * </pre>
    *
-   * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 4;</code>
+   * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 5;</code>
    */
   org.huangyr.project.vulcan.proto.RunnerNodeInfo getRunnerNodeInfo();
   /**
@@ -73,7 +91,7 @@ public interface VulcanHeartPackageOrBuilder extends
    * 上报Runner自身节点信息
    * </pre>
    *
-   * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 4;</code>
+   * <code>.org.huangyr.project.vulcan.proto.RunnerNodeInfo runnerNodeInfo = 5;</code>
    */
   org.huangyr.project.vulcan.proto.RunnerNodeInfoOrBuilder getRunnerNodeInfoOrBuilder();
 }
