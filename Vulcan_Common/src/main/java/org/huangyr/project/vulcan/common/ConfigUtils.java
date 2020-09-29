@@ -9,11 +9,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 /*******************************************************************************
- * 版权信息：安信证券股份有限公司
- * Copyright: Copyright (c) 2019安信证券股份有限公司,Inc.All Rights Reserved.
- *
- * @date 2020-02-20 1:29 PM 
- * @author: <a href=mailto:@essence.com.cn>黄跃然</a>
+ * @date 2020-02-20 1:29 PM
+ * @author: <a href=mailto:@>黄跃然</a>
  * @Description: 项目配置文件初始化工具 封装配置相关方法
  ******************************************************************************/
 @Slf4j

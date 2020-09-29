@@ -9,7 +9,7 @@ import org.huangyr.project.vulcan.server.common.Constants;
  * @author: <a href=mailto:huangyueran>黄跃然</a>
  * @Description: 租约管理服务
  ******************************************************************************/
-public class LeaseManagerService implements Runnable {
+public class LeaseManagerMonitor implements Runnable {
 
     private long softLimit = Constants.LEASE_SOFTLIMIT_PERIOD;
 

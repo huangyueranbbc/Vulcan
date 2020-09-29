@@ -57,8 +57,12 @@ public class ServerSocketCommandHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         log.error("client handler channel has error.", cause);
-        if (null != cause) cause.printStackTrace();
-        if (null != ctx) ctx.close();
+        if (null != cause) {
+            cause.printStackTrace();
+        }
+        if (null != ctx) {
+            ctx.close();
+        }
     }
 
 }

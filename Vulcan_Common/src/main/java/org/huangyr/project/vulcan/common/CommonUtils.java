@@ -7,11 +7,8 @@ import java.io.File;
 import java.net.InetAddress;
 
 /*******************************************************************************
- * 版权信息：安信证券股份有限公司
- * Copyright: Copyright (c) 2019安信证券股份有限公司,Inc.All Rights Reserved.
- *
- * @date 2020-02-20 12:53 PM 
- * @author: <a href=mailto:@essence.com.cn>黄跃然</a>
+ * @date 2020-02-20 12:53 PM
+ * @author: <a href=mailto:@>黄跃然</a>
  * @Description: 工具类
  ******************************************************************************/
 @Slf4j
